@@ -4,7 +4,6 @@ import { gsap } from 'gsap';
 
 const Hero = () => {
   const heroRef = useRef<HTMLDivElement>(null);
-  const networkRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -26,30 +25,53 @@ const Hero = () => {
         "-=0.3"
       );
 
-      // Network animation
+      // Enhanced Network animation with moving balls
       gsap.set('.network-dot', { scale: 0 });
       gsap.to('.network-dot', {
         scale: 1,
         duration: 0.5,
         stagger: 0.1,
-        ease: "back.out(1.7)",
-        delay: 1
+        ease: "back.out(1.7)"
       });
 
+      // Animated lines appearing
+      gsap.set('.network-line', { strokeDashoffset: 200 });
       gsap.to('.network-line', {
         strokeDashoffset: 0,
         duration: 2,
         stagger: 0.2,
-        delay: 1.5
+        ease: "power2.out"
       });
 
-      // Floating animation for network
+      // Moving balls animation
+      gsap.to('.moving-ball', {
+        motionPath: {
+          path: "M160,80 Q240,120 240,160 Q200,200 160,240 Q120,200 80,160 Q120,120 160,80",
+          autoRotate: false,
+        },
+        duration: 8,
+        repeat: -1,
+        ease: "none",
+        stagger: 2
+      });
+
+      // Floating animation for network container
       gsap.to('.network-container', {
         y: -20,
         duration: 3,
         ease: "power1.inOut",
         yoyo: true,
         repeat: -1
+      });
+
+      // Pulsing effect for main nodes
+      gsap.to('.main-node', {
+        scale: 1.2,
+        duration: 2,
+        ease: "power1.inOut",
+        yoyo: true,
+        repeat: -1,
+        stagger: 0.5
       });
 
     }, heroRef);
@@ -95,51 +117,38 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* Right Content - Network Visualization */}
+        {/* Right Content - Enhanced Network Visualization */}
         <div className="flex justify-center lg:justify-end">
           <div className="network-container relative w-80 h-80">
             <svg className="w-full h-full" viewBox="0 0 320 320">
               {/* Network Lines */}
               <g className="network-lines">
-                <line 
-                  className="network-line stroke-gray-300" 
-                  x1="160" y1="80" x2="240" y2="160" 
-                  strokeWidth="1" 
-                  strokeDasharray="200" 
-                  strokeDashoffset="200"
-                />
-                <line 
-                  className="network-line stroke-gray-300" 
-                  x1="160" y1="80" x2="80" y2="160" 
-                  strokeWidth="1" 
-                  strokeDasharray="200" 
-                  strokeDashoffset="200"
-                />
-                <line 
-                  className="network-line stroke-gray-300" 
-                  x1="240" y1="160" x2="160" y2="240" 
-                  strokeWidth="1" 
-                  strokeDasharray="200" 
-                  strokeDashoffset="200"
-                />
-                <line 
-                  className="network-line stroke-gray-300" 
-                  x1="80" y1="160" x2="160" y2="240" 
-                  strokeWidth="1" 
-                  strokeDasharray="200" 
-                  strokeDashoffset="200"
-                />
+                <line className="network-line stroke-gray-300" x1="160" y1="80" x2="240" y2="160" strokeWidth="2" strokeDasharray="200" />
+                <line className="network-line stroke-gray-300" x1="160" y1="80" x2="80" y2="160" strokeWidth="2" strokeDasharray="200" />
+                <line className="network-line stroke-gray-300" x1="240" y1="160" x2="160" y2="240" strokeWidth="2" strokeDasharray="200" />
+                <line className="network-line stroke-gray-300" x1="80" y1="160" x2="160" y2="240" strokeWidth="2" strokeDasharray="200" />
+                <line className="network-line stroke-gray-300" x1="160" y1="80" x2="200" y2="120" strokeWidth="1" strokeDasharray="200" />
+                <line className="network-line stroke-gray-300" x1="160" y1="80" x2="120" y2="120" strokeWidth="1" strokeDasharray="200" />
+                <line className="network-line stroke-gray-300" x1="240" y1="160" x2="200" y2="200" strokeWidth="1" strokeDasharray="200" />
+                <line className="network-line stroke-gray-300" x1="80" y1="160" x2="120" y2="200" strokeWidth="1" strokeDasharray="200" />
               </g>
               
-              {/* Network Dots */}
-              <circle className="network-dot fill-blue-500" cx="160" cy="80" r="8" />
-              <circle className="network-dot fill-red-500" cx="240" cy="160" r="6" />
-              <circle className="network-dot fill-purple-500" cx="160" cy="240" r="8" />
-              <circle className="network-dot fill-green-500" cx="80" cy="160" r="6" />
-              <circle className="network-dot fill-yellow-500" cx="200" cy="120" r="4" />
-              <circle className="network-dot fill-pink-500" cx="120" cy="120" r="4" />
-              <circle className="network-dot fill-indigo-500" cx="200" cy="200" r="4" />
-              <circle className="network-dot fill-cyan-500" cx="120" cy="200" r="4" />
+              {/* Main Network Dots */}
+              <circle className="network-dot main-node fill-blue-500" cx="160" cy="80" r="10" />
+              <circle className="network-dot main-node fill-red-500" cx="240" cy="160" r="8" />
+              <circle className="network-dot main-node fill-purple-500" cx="160" cy="240" r="10" />
+              <circle className="network-dot main-node fill-green-500" cx="80" cy="160" r="8" />
+              
+              {/* Secondary Nodes */}
+              <circle className="network-dot fill-yellow-500" cx="200" cy="120" r="5" />
+              <circle className="network-dot fill-pink-500" cx="120" cy="120" r="5" />
+              <circle className="network-dot fill-indigo-500" cx="200" cy="200" r="5" />
+              <circle className="network-dot fill-cyan-500" cx="120" cy="200" r="5" />
+              
+              {/* Moving Balls */}
+              <circle className="moving-ball fill-orange-400" cx="160" cy="80" r="3" opacity="0.8" />
+              <circle className="moving-ball fill-teal-400" cx="160" cy="80" r="3" opacity="0.8" />
+              <circle className="moving-ball fill-violet-400" cx="160" cy="80" r="3" opacity="0.8" />
             </svg>
           </div>
         </div>

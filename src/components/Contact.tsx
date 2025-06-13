@@ -1,4 +1,3 @@
-
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -13,6 +12,18 @@ const Contact = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
+      // Animated background drops
+      gsap.set('.bg-drop', { scale: 0, opacity: 0 });
+      gsap.to('.bg-drop', {
+        scale: 1,
+        opacity: 0.1,
+        duration: 2,
+        stagger: 0.3,
+        repeat: -1,
+        yoyo: true,
+        ease: "power2.inOut"
+      });
+
       // Contact section animation
       gsap.fromTo('.contact-content', 
         { y: 80, opacity: 0 },
@@ -41,8 +52,7 @@ const Contact = () => {
           ease: "power3.out",
           scrollTrigger: {
             trigger: '.contact-form',
-            start: "top 80%",
-            delay: 0.3
+            start: "top 80%"
           }
         }
       );
@@ -62,17 +72,19 @@ const Contact = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Form submitted:', formData);
-    // Add form submission logic here
   };
 
   return (
     <div id="contact" ref={contactRef} className="contact-section py-24 bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 text-white relative overflow-hidden">
       
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-20 left-20 w-32 h-32 border border-white/20 rounded-full"></div>
-        <div className="absolute bottom-20 right-20 w-24 h-24 border border-white/20 rounded-full"></div>
-        <div className="absolute top-1/2 left-1/3 w-16 h-16 border border-white/20 rounded-full"></div>
+      {/* Animated Background Drops */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="bg-drop absolute top-10 left-10 w-32 h-32 bg-white rounded-full"></div>
+        <div className="bg-drop absolute top-20 right-20 w-24 h-24 bg-cyan-300 rounded-full"></div>
+        <div className="bg-drop absolute bottom-20 left-1/4 w-40 h-40 bg-purple-300 rounded-full"></div>
+        <div className="bg-drop absolute top-1/2 right-1/3 w-20 h-20 bg-pink-300 rounded-full"></div>
+        <div className="bg-drop absolute bottom-10 right-10 w-28 h-28 bg-blue-300 rounded-full"></div>
+        <div className="bg-drop absolute top-1/3 left-1/2 w-16 h-16 bg-yellow-300 rounded-full"></div>
       </div>
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">

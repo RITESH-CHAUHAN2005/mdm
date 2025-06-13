@@ -27,6 +27,24 @@ const Team = () => {
         }
       );
 
+      // Blog posts animation
+      gsap.fromTo('.blog-post', 
+        { x: -50, opacity: 0 },
+        { 
+          x: 0, 
+          opacity: 1,
+          duration: 1,
+          stagger: 0.2,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: '.blog-section',
+            start: "top 70%",
+            end: "bottom 30%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+
       // Floating animation for team photos
       gsap.to('.team-photo', {
         y: -10,
@@ -41,6 +59,30 @@ const Team = () => {
 
     return () => ctx.revert();
   }, []);
+
+  const blogPosts = [
+    {
+      title: "The Future of Design Systems",
+      excerpt: "How modern design systems are revolutionizing the way we build digital products.",
+      author: "Sarah Smith",
+      readTime: "5 min read",
+      category: "Design"
+    },
+    {
+      title: "AI-Powered Development Tools",
+      excerpt: "Exploring the latest AI tools that are transforming software development workflows.",
+      author: "Alex Johnson",
+      readTime: "7 min read",
+      category: "Technology"
+    },
+    {
+      title: "Digital Marketing Trends 2024",
+      excerpt: "Key strategies and trends that will shape digital marketing in the coming year.",
+      author: "Maria Garcia",
+      readTime: "6 min read",
+      category: "Marketing"
+    }
+  ];
 
   return (
     <div id="team" ref={teamRef} className="py-24 bg-white">
@@ -59,7 +101,7 @@ const Team = () => {
         </div>
 
         {/* Team Grid */}
-        <div className="team-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="team-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
           {[1, 2, 3, 4].map((member, index) => (
             <div key={member} className="team-member group">
               <div className="bg-gray-50 rounded-2xl p-6 hover:bg-gray-100 transition-all duration-500 hover:shadow-lg">
@@ -95,6 +137,32 @@ const Team = () => {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Blog Section */}
+        <div className="blog-section">
+          <div className="text-center mb-12">
+            <h3 className="text-3xl font-bold text-gray-900 mb-4">Latest Insights</h3>
+            <p className="text-lg text-gray-600">Thoughts and perspectives from our team</p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {blogPosts.map((post, index) => (
+              <div key={post.title} className="blog-post bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                <div className="mb-4">
+                  <span className="inline-block px-3 py-1 bg-blue-100 text-blue-800 text-sm font-medium rounded-full">
+                    {post.category}
+                  </span>
+                </div>
+                <h4 className="text-xl font-bold text-gray-900 mb-3">{post.title}</h4>
+                <p className="text-gray-600 mb-4">{post.excerpt}</p>
+                <div className="flex items-center justify-between text-sm text-gray-500">
+                  <span>{post.author}</span>
+                  <span>{post.readTime}</span>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Company Stats */}

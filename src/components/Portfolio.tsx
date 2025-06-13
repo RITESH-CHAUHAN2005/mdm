@@ -26,16 +26,41 @@ const Portfolio = () => {
         }
       );
 
-      // Portfolio images scale animation
-      gsap.set('.portfolio-image', { scale: 1.2 });
-      gsap.to('.portfolio-image', {
-        scale: 1,
+      // Red theme animation (BEAR)
+      gsap.to('.red-particle', {
+        y: -20,
+        duration: 2,
+        repeat: -1,
+        yoyo: true,
+        ease: "power2.inOut",
+        stagger: 0.3
+      });
+
+      // Blue theme animation (FRAN)
+      gsap.to('.blue-wave', {
+        scaleX: 1.5,
+        duration: 3,
+        repeat: -1,
+        yoyo: true,
+        ease: "power2.inOut",
+        stagger: 0.2
+      });
+
+      // Purple theme animation (Mental Bang)
+      gsap.to('.purple-spiral', {
+        rotation: 360,
+        duration: 8,
+        repeat: -1,
+        ease: "none"
+      });
+
+      gsap.to('.purple-dot', {
+        scale: 1.5,
         duration: 1.5,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: '.portfolio-grid',
-          start: "top 70%",
-        }
+        repeat: -1,
+        yoyo: true,
+        ease: "power2.inOut",
+        stagger: 0.4
       });
 
     }, portfolioRef);
@@ -81,8 +106,8 @@ const Portfolio = () => {
         {/* Portfolio Grid */}
         <div className="portfolio-grid grid grid-cols-1 md:grid-cols-3 gap-8">
           {portfolioItems.map((item, index) => (
-            <div key={item.title} className="portfolio-item group cursor-pointer">
-              <div className="relative overflow-hidden rounded-2xl bg-white shadow-lg hover:shadow-2xl transition-all duration-500">
+            <div key={item.title} className="portfolio-item group cursor-pointer relative">
+              <div className="relative overflow-hidden rounded-2xl bg-white shadow-lg hover:shadow-2xl transition-all duration-500 mb-8">
                 
                 {/* Portfolio Image */}
                 <div className={`portfolio-image h-64 ${item.bgColor} relative overflow-hidden`}>
@@ -109,6 +134,43 @@ const Portfolio = () => {
                     </div>
                   </div>
                 </div>
+              </div>
+
+              {/* Animated Theme Under Card */}
+              <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-32 h-16">
+                {index === 0 && (
+                  // Red theme for BEAR
+                  <svg className="w-full h-full" viewBox="0 0 128 64">
+                    <circle className="red-particle fill-red-400" cx="20" cy="40" r="4" opacity="0.6" />
+                    <circle className="red-particle fill-pink-400" cx="40" cy="30" r="3" opacity="0.7" />
+                    <circle className="red-particle fill-red-500" cx="60" cy="45" r="5" opacity="0.5" />
+                    <circle className="red-particle fill-pink-500" cx="80" cy="35" r="3" opacity="0.6" />
+                    <circle className="red-particle fill-red-300" cx="100" cy="40" r="4" opacity="0.8" />
+                  </svg>
+                )}
+                
+                {index === 1 && (
+                  // Blue theme for FRAN
+                  <svg className="w-full h-full" viewBox="0 0 128 64">
+                    <ellipse className="blue-wave fill-blue-300" cx="64" cy="32" rx="20" ry="8" opacity="0.4" />
+                    <ellipse className="blue-wave fill-blue-400" cx="64" cy="32" rx="30" ry="6" opacity="0.3" />
+                    <ellipse className="blue-wave fill-blue-500" cx="64" cy="32" rx="40" ry="4" opacity="0.2" />
+                    <circle className="fill-blue-600" cx="64" cy="32" r="6" />
+                  </svg>
+                )}
+                
+                {index === 2 && (
+                  // Purple theme for Mental Bang
+                  <svg className="w-full h-full" viewBox="0 0 128 64">
+                    <g className="purple-spiral" style={{ transformOrigin: '64px 32px' }}>
+                      <path className="stroke-purple-400" d="M64,32 Q74,22 84,32 Q74,42 64,32 Q54,22 44,32 Q54,42 64,32" fill="none" strokeWidth="2" opacity="0.6" />
+                    </g>
+                    <circle className="purple-dot fill-purple-500" cx="50" cy="32" r="3" />
+                    <circle className="purple-dot fill-pink-500" cx="78" cy="32" r="3" />
+                    <circle className="purple-dot fill-purple-400" cx="64" cy="20" r="2" />
+                    <circle className="purple-dot fill-pink-400" cx="64" cy="44" r="2" />
+                  </svg>
+                )}
               </div>
             </div>
           ))}
