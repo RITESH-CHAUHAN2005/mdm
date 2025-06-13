@@ -9,12 +9,7 @@ const Footer = () => {
           
           {/* Company Info */}
           <div className="md:col-span-2">
-            <div className="flex items-center space-x-3 mb-4">
-              <img 
-                src="/lovable-uploads/0401220c-3f1c-4145-8704-5c86c9ce11b6.png" 
-                alt="MDM Consulting Logo" 
-                className="h-8 w-auto"
-              />
+            <div className="mb-4">
               <h3 className="text-2xl font-bold">MDM Consulting</h3>
             </div>
             <p className="text-gray-400 mb-6 max-w-md">
@@ -54,7 +49,7 @@ const Footer = () => {
           <div>
             <h4 className="font-bold text-lg mb-4 text-[#d4df42]">Company</h4>
             <ul className="space-y-2 text-gray-400">
-              {['About', 'Team', 'Portfolio', 'Contact', 'Blog'].map((item) => (
+              {['About', 'Portfolio', 'Case Studies', 'Contact', 'Blog'].map((item) => (
                 <li key={item}>
                   <a href="#" className="hover:text-[#d4df42] transition-colors duration-300">
                     {item}
