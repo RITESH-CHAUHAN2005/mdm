@@ -6,13 +6,8 @@ import { TextPlugin } from 'gsap/TextPlugin';
 import Navigation from '../components/Navigation';
 import Hero from '../components/Hero';
 import Services from '../components/Services';
-import DesignSection from '../components/DesignSection';
-import TechnologySection from '../components/TechnologySection';
-import MarketingSection from '../components/MarketingSection';
-import AccelerateSection from '../components/AccelerateSection';
 import Portfolio from '../components/Portfolio';
 import Team from '../components/Team';
-import BlogSection from '../components/BlogSection';
 import Contact from '../components/Contact';
 import Footer from '../components/Footer';
 
@@ -22,6 +17,7 @@ const Index = () => {
   const mainRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // Smooth scrolling initialization
     const ctx = gsap.context(() => {
       // Global scroll animations
       gsap.from(".fade-up", {
@@ -37,6 +33,18 @@ const Index = () => {
         }
       });
 
+      // Parallax effect for hero elements
+      gsap.to(".parallax-slow", {
+        yPercent: -50,
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".parallax-slow",
+          start: "top bottom",
+          end: "bottom top",
+          scrub: true
+        }
+      });
+
     }, mainRef);
 
     return () => ctx.revert();
@@ -47,13 +55,8 @@ const Index = () => {
       <Navigation />
       <Hero />
       <Services />
-      <DesignSection />
-      <TechnologySection />
-      <MarketingSection />
-      <AccelerateSection />
       <Portfolio />
       <Team />
-      <BlogSection />
       <Contact />
       <Footer />
     </div>
