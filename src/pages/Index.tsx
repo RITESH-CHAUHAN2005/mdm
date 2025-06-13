@@ -5,7 +5,10 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { TextPlugin } from 'gsap/TextPlugin';
 import Navigation from '../components/Navigation';
 import Hero from '../components/Hero';
-import Services from '../components/Services';
+import ServicesOverview from '../components/ServicesOverview';
+import TechnologyServices from '../components/TechnologyServices';
+import MarketingServices from '../components/MarketingServices';
+import MediaProductionServices from '../components/MediaProductionServices';
 import Portfolio from '../components/Portfolio';
 import Team from '../components/Team';
 import Contact from '../components/Contact';
@@ -54,7 +57,10 @@ const Index = () => {
     <div ref={mainRef} className="overflow-x-hidden">
       <Navigation />
       <Hero />
-      <Services />
+      <ServicesOverview />
+      <TechnologyServices />
+      <MarketingServices />
+      <MediaProductionServices />
       <Portfolio />
       <Team />
       <Contact />

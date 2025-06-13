@@ -1,3 +1,4 @@
+
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -75,11 +76,11 @@ const Contact = () => {
   };
 
   return (
-    <div id="contact" ref={contactRef} className="contact-section py-24 bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 text-white relative overflow-hidden">
+    <div id="contact" ref={contactRef} className="contact-section py-24 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white relative overflow-hidden">
       
       {/* Animated Background Drops */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="bg-drop absolute top-10 left-10 w-32 h-32 bg-white rounded-full"></div>
+        <div className="bg-drop absolute top-10 left-10 w-32 h-32 bg-[#d4df42] rounded-full"></div>
         <div className="bg-drop absolute top-20 right-20 w-24 h-24 bg-cyan-300 rounded-full"></div>
         <div className="bg-drop absolute bottom-20 left-1/4 w-40 h-40 bg-purple-300 rounded-full"></div>
         <div className="bg-drop absolute top-1/2 right-1/3 w-20 h-20 bg-pink-300 rounded-full"></div>
@@ -92,11 +93,11 @@ const Contact = () => {
         {/* Section Header */}
         <div className="contact-content text-center mb-16">
           <h2 className="text-4xl lg:text-5xl font-bold mb-8">
-            Let's create a measurable<br />
-            impact on your business.
+            Ready to Transform<br />
+            Your Digital Presence?
           </h2>
           <p className="text-xl text-white/80 max-w-2xl mx-auto">
-            Ready to transform your ideas into reality? Get in touch with our team.
+            Let's create a measurable impact on your business together. Get in touch with our team at MDM Consulting.
           </p>
         </div>
 
@@ -114,7 +115,7 @@ const Contact = () => {
                 name="name"
                 value={formData.name}
                 onChange={handleInputChange}
-                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-white/30 focus:border-transparent transition-all duration-300 text-white placeholder-white/60"
+                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#d4df42] focus:border-transparent transition-all duration-300 text-white placeholder-white/60"
                 placeholder="Enter your name"
                 required
               />
@@ -130,7 +131,7 @@ const Contact = () => {
                 name="email"
                 value={formData.email}
                 onChange={handleInputChange}
-                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-white/30 focus:border-transparent transition-all duration-300 text-white placeholder-white/60"
+                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#d4df42] focus:border-transparent transition-all duration-300 text-white placeholder-white/60"
                 placeholder="Enter your email"
                 required
               />
@@ -146,7 +147,7 @@ const Contact = () => {
                 value={formData.message}
                 onChange={handleInputChange}
                 rows={5}
-                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-white/30 focus:border-transparent transition-all duration-300 text-white placeholder-white/60 resize-none"
+                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#d4df42] focus:border-transparent transition-all duration-300 text-white placeholder-white/60 resize-none"
                 placeholder="Tell us about your project"
                 required
               />
@@ -155,7 +156,7 @@ const Contact = () => {
             <div className="form-element">
               <button
                 type="submit"
-                className="w-full bg-white text-purple-900 font-bold py-4 px-8 rounded-lg hover:bg-white/90 transition-all duration-300 transform hover:scale-105 hover:shadow-xl"
+                className="w-full bg-[#d4df42] text-gray-900 font-bold py-4 px-8 rounded-lg hover:bg-[#a8b832] transition-all duration-300 transform hover:scale-105 hover:shadow-xl"
               >
                 Start Your Project
               </button>
@@ -166,15 +167,15 @@ const Contact = () => {
         {/* Contact Info */}
         <div className="contact-content mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
           <div>
-            <h3 className="font-bold text-lg mb-2">Email</h3>
-            <p className="text-white/80">hello@leo9studio.com</p>
+            <h3 className="font-bold text-lg mb-2 text-[#d4df42]">Email</h3>
+            <p className="text-white/80">hello@mdmconsulting.com</p>
           </div>
           <div>
-            <h3 className="font-bold text-lg mb-2">Phone</h3>
+            <h3 className="font-bold text-lg mb-2 text-[#d4df42]">Phone</h3>
             <p className="text-white/80">+1 (555) 123-4567</p>
           </div>
           <div>
-            <h3 className="font-bold text-lg mb-2">Location</h3>
+            <h3 className="font-bold text-lg mb-2 text-[#d4df42]">Location</h3>
             <p className="text-white/80">San Francisco, CA</p>
           </div>
         </div>
