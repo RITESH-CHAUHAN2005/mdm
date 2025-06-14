@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from 'react';
-import { gsap } from 'gsap';
 import { Link, useLocation } from 'react-router-dom';
+import { ChevronDown, Menu, X } from 'lucide-react';
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -13,103 +13,89 @@ const Navigation = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  useEffect(() => {
-    gsap.fromTo('.nav-item', 
-      { y: -50, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.8, stagger: 0.1, delay: 0.2 }
-    );
-  }, []);
-
-  const handleDropdownClick = (itemName: string, e: React.MouseEvent) => {
-    e.preventDefault();
-    setActiveDropdown(activeDropdown === itemName ? null : itemName);
-  };
-
-  const handleLinkClick = () => {
+  const closeAllMenus = () => {
     setIsMobileMenuOpen(false);
     setActiveDropdown(null);
   };
 
+  const handleDropdownEnter = (itemName: string) => {
+    setActiveDropdown(itemName);
+  };
+
+  const handleDropdownLeave = () => {
+    setActiveDropdown(null);
+  };
+
   const menuItems = [
-    { name: 'Home', href: '/' },
-    { 
-      name: 'Services', 
-      submenu: [
-        { name: 'Technology', href: '/services/technology' },
-        { name: 'Marketing', href: '/services/marketing' },
-        { name: 'Media Production', href: '/services/media-production' }
+    { name: 'Home', path: '/' },
+    {
+      name: 'Services',
+      dropdownItems: [
+        { name: 'Technology', path: '/services/technology' },
+        { name: 'Marketing', path: '/services/marketing' },
+        { name: 'Media Production', path: '/services/media-production' }
       ]
     },
-    { 
-      name: 'Portfolio',
-      href: '/portfolio'
-    },
-    { name: 'About', href: '/about' },
-    { name: 'Contact', href: '/contact' }
+    { name: 'Portfolio', path: '/portfolio' },
+    { name: 'About', path: '/about' },
+    { name: 'Contact', path: '/contact' }
   ];
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      isScrolled ? 'bg-white/90 backdrop-blur-md shadow-lg' : 'bg-transparent'
+      isScrolled ? 'bg-white/95 backdrop-blur-md shadow-lg' : 'bg-transparent'
     }`}>
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
-          {/* Logo Text Only */}
-          <div className="nav-item">
-            <Link to="/" className="font-bold text-xl text-gray-900">
-              MDM Consulting
-            </Link>
-          </div>
-          
+          {/* Logo */}
+          <Link to="/" onClick={closeAllMenus} className="font-bold text-2xl text-gray-900 hover:text-[#d4df42] transition-colors">
+            MDM Consulting
+          </Link>
+
           {/* Desktop Menu */}
-          <div className="hidden md:flex space-x-8">
+          <div className="hidden md:flex items-center space-x-1">
             {menuItems.map((item) => (
-              <div key={item.name} className="relative">
-                {item.submenu ? (
+              <div
+                key={item.name}
+                className="relative"
+                onMouseEnter={() => item.dropdownItems && handleDropdownEnter(item.name)}
+                onMouseLeave={handleDropdownLeave}
+              >
+                {item.dropdownItems ? (
                   <button
-                    onClick={(e) => handleDropdownClick(item.name, e)}
-                    onMouseEnter={() => setActiveDropdown(item.name)}
-                    onMouseLeave={() => setActiveDropdown(null)}
-                    className="nav-item text-gray-700 hover:text-[#d4df42] font-medium transition-colors duration-300 relative group flex items-center"
-                  >
-                    {item.name}
-                    <svg className="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </svg>
-                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#d4df42] transition-all duration-300 group-hover:w-full"></span>
-                  </button>
-                ) : (
-                  <Link
-                    to={item.href!}
-                    onClick={handleLinkClick}
-                    className={`nav-item text-gray-700 hover:text-[#d4df42] font-medium transition-colors duration-300 relative group ${
-                      location.pathname === item.href ? 'text-[#d4df42]' : ''
+                    className={`flex items-center px-4 py-2 text-gray-700 hover:text-[#d4df42] font-medium transition-colors duration-200 rounded-md hover:bg-gray-50 ${
+                      item.dropdownItems.some(subItem => location.pathname === subItem.path) ? 'text-[#d4df42]' : ''
                     }`}
                   >
                     {item.name}
-                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#d4df42] transition-all duration-300 group-hover:w-full"></span>
+                    <ChevronDown className="ml-1 h-4 w-4" />
+                  </button>
+                ) : (
+                  <Link
+                    to={item.path!}
+                    onClick={closeAllMenus}
+                    className={`px-4 py-2 text-gray-700 hover:text-[#d4df42] font-medium transition-colors duration-200 rounded-md hover:bg-gray-50 ${
+                      location.pathname === item.path ? 'text-[#d4df42]' : ''
+                    }`}
+                  >
+                    {item.name}
                   </Link>
                 )}
-                
-                {/* Dropdown Menu */}
-                {item.submenu && activeDropdown === item.name && (
-                  <div 
-                    className="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-xl border py-2 z-50"
-                    onMouseEnter={() => setActiveDropdown(item.name)}
-                    onMouseLeave={() => setActiveDropdown(null)}
-                  >
-                    {item.submenu.map((subItem) => (
+
+                {/* Desktop Dropdown */}
+                {item.dropdownItems && activeDropdown === item.name && (
+                  <div className="absolute top-full left-0 mt-1 w-56 bg-white rounded-lg shadow-xl border border-gray-100 py-2 z-50">
+                    {item.dropdownItems.map((subItem) => (
                       <Link
                         key={subItem.name}
-                        to={subItem.href}
-                        onClick={handleLinkClick}
-                        className={`block px-4 py-2 text-gray-700 hover:bg-[#d4df42]/10 hover:text-[#d4df42] transition-colors duration-200 ${
-                          location.pathname === subItem.href ? 'text-[#d4df42] bg-[#d4df42]/5' : ''
+                        to={subItem.path}
+                        onClick={closeAllMenus}
+                        className={`block px-4 py-3 text-gray-700 hover:bg-[#d4df42]/10 hover:text-[#d4df42] transition-colors duration-200 ${
+                          location.pathname === subItem.path ? 'text-[#d4df42] bg-[#d4df42]/5' : ''
                         }`}
                       >
                         {subItem.name}
@@ -124,56 +110,55 @@ const Navigation = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden nav-item p-2"
+            className="md:hidden p-2 text-gray-700 hover:text-[#d4df42] transition-colors"
           >
-            <div className="w-6 h-6 flex flex-col justify-center items-center">
-              <span className={`bg-gray-900 block transition-all duration-300 h-0.5 w-6 transform ${
-                isMobileMenuOpen ? 'rotate-45 translate-y-1.5' : '-translate-y-0.5'
-              }`}></span>
-              <span className={`bg-gray-900 block transition-all duration-300 h-0.5 w-6 ${
-                isMobileMenuOpen ? 'opacity-0' : 'opacity-100'
-              }`}></span>
-              <span className={`bg-gray-900 block transition-all duration-300 h-0.5 w-6 transform ${
-                isMobileMenuOpen ? '-rotate-45 -translate-y-1.5' : 'translate-y-0.5'
-              }`}></span>
-            </div>
+            {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
         </div>
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden bg-white/95 backdrop-blur-md rounded-lg mt-2 p-6 shadow-xl">
+          <div className="md:hidden bg-white/95 backdrop-blur-md rounded-lg mt-2 p-4 shadow-xl border border-gray-100">
             {menuItems.map((item) => (
-              <div key={item.name}>
-                {item.submenu ? (
-                  <button
-                    onClick={() => setActiveDropdown(activeDropdown === item.name ? null : item.name)}
-                    className="block w-full text-left py-3 text-gray-700 hover:text-[#d4df42] font-medium transition-colors duration-300"
-                  >
-                    {item.name}
-                  </button>
+              <div key={item.name} className="border-b border-gray-100 last:border-b-0">
+                {item.dropdownItems ? (
+                  <>
+                    <button
+                      onClick={() => setActiveDropdown(activeDropdown === item.name ? null : item.name)}
+                      className="flex items-center justify-between w-full py-3 text-gray-700 hover:text-[#d4df42] font-medium transition-colors"
+                    >
+                      {item.name}
+                      <ChevronDown className={`h-4 w-4 transition-transform ${
+                        activeDropdown === item.name ? 'rotate-180' : ''
+                      }`} />
+                    </button>
+                    {activeDropdown === item.name && (
+                      <div className="pb-2">
+                        {item.dropdownItems.map((subItem) => (
+                          <Link
+                            key={subItem.name}
+                            to={subItem.path}
+                            onClick={closeAllMenus}
+                            className={`block py-2 pl-4 text-gray-600 hover:text-[#d4df42] transition-colors ${
+                              location.pathname === subItem.path ? 'text-[#d4df42]' : ''
+                            }`}
+                          >
+                            {subItem.name}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </>
                 ) : (
                   <Link
-                    to={item.href!}
-                    onClick={handleLinkClick}
-                    className="block py-3 text-gray-700 hover:text-[#d4df42] font-medium transition-colors duration-300"
+                    to={item.path!}
+                    onClick={closeAllMenus}
+                    className={`block py-3 text-gray-700 hover:text-[#d4df42] font-medium transition-colors ${
+                      location.pathname === item.path ? 'text-[#d4df42]' : ''
+                    }`}
                   >
                     {item.name}
                   </Link>
-                )}
-                {item.submenu && activeDropdown === item.name && (
-                  <div className="ml-4 mt-2">
-                    {item.submenu.map((subItem) => (
-                      <Link
-                        key={subItem.name}
-                        to={subItem.href}
-                        onClick={handleLinkClick}
-                        className="block py-2 text-gray-600 hover:text-[#d4df42] transition-colors duration-200"
-                      >
-                        {subItem.name}
-                      </Link>
-                    ))}
-                  </div>
                 )}
               </div>
             ))}
