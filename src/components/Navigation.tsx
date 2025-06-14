@@ -17,9 +17,23 @@ const Navigation = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Close dropdowns when clicking outside
+  useEffect(() => {
+    const handleClickOutside = () => {
+      setActiveDropdown(null);
+    };
+    document.addEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
+  }, []);
+
   const closeAllMenus = () => {
     setIsMobileMenuOpen(false);
     setActiveDropdown(null);
+  };
+
+  const handleDropdownClick = (e: React.MouseEvent, itemName: string) => {
+    e.stopPropagation();
+    setActiveDropdown(activeDropdown === itemName ? null : itemName);
   };
 
   const handleDropdownEnter = (itemName: string) => {
@@ -27,7 +41,8 @@ const Navigation = () => {
   };
 
   const handleDropdownLeave = () => {
-    setActiveDropdown(null);
+    // Small delay to prevent flickering when moving cursor
+    setTimeout(() => setActiveDropdown(null), 150);
   };
 
   const menuItems = [
@@ -63,16 +78,19 @@ const Navigation = () => {
                 key={item.name}
                 className="relative"
                 onMouseEnter={() => item.dropdownItems && handleDropdownEnter(item.name)}
-                onMouseLeave={handleDropdownLeave}
+                onMouseLeave={() => item.dropdownItems && handleDropdownLeave()}
               >
                 {item.dropdownItems ? (
                   <button
+                    onClick={(e) => handleDropdownClick(e, item.name)}
                     className={`flex items-center px-4 py-2 text-gray-700 hover:text-[#d4df42] font-medium transition-colors duration-200 rounded-md hover:bg-gray-50 ${
                       item.dropdownItems.some(subItem => location.pathname === subItem.path) ? 'text-[#d4df42]' : ''
                     }`}
                   >
                     {item.name}
-                    <ChevronDown className="ml-1 h-4 w-4" />
+                    <ChevronDown className={`ml-1 h-4 w-4 transition-transform duration-200 ${
+                      activeDropdown === item.name ? 'rotate-180' : ''
+                    }`} />
                   </button>
                 ) : (
                   <Link
@@ -88,7 +106,11 @@ const Navigation = () => {
 
                 {/* Desktop Dropdown */}
                 {item.dropdownItems && activeDropdown === item.name && (
-                  <div className="absolute top-full left-0 mt-1 w-56 bg-white rounded-lg shadow-xl border border-gray-100 py-2 z-50">
+                  <div 
+                    className="absolute top-full left-0 mt-1 w-56 bg-white rounded-lg shadow-xl border border-gray-100 py-2 z-50 animate-in slide-in-from-top-2 duration-200"
+                    onMouseEnter={() => setActiveDropdown(item.name)}
+                    onMouseLeave={handleDropdownLeave}
+                  >
                     {item.dropdownItems.map((subItem) => (
                       <Link
                         key={subItem.name}
@@ -118,22 +140,22 @@ const Navigation = () => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden bg-white/95 backdrop-blur-md rounded-lg mt-2 p-4 shadow-xl border border-gray-100">
+          <div className="md:hidden bg-white/95 backdrop-blur-md rounded-lg mt-2 p-4 shadow-xl border border-gray-100 animate-in slide-in-from-top-2 duration-200">
             {menuItems.map((item) => (
               <div key={item.name} className="border-b border-gray-100 last:border-b-0">
                 {item.dropdownItems ? (
                   <>
                     <button
-                      onClick={() => setActiveDropdown(activeDropdown === item.name ? null : item.name)}
+                      onClick={(e) => handleDropdownClick(e, item.name)}
                       className="flex items-center justify-between w-full py-3 text-gray-700 hover:text-[#d4df42] font-medium transition-colors"
                     >
                       {item.name}
-                      <ChevronDown className={`h-4 w-4 transition-transform ${
+                      <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${
                         activeDropdown === item.name ? 'rotate-180' : ''
                       }`} />
                     </button>
                     {activeDropdown === item.name && (
-                      <div className="pb-2">
+                      <div className="pb-2 animate-in slide-in-from-top-1 duration-200">
                         {item.dropdownItems.map((subItem) => (
                           <Link
                             key={subItem.name}
