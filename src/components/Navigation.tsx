@@ -1,12 +1,13 @@
 
 import { useState, useEffect } from 'react';
 import { gsap } from 'gsap';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,6 +25,16 @@ const Navigation = () => {
     );
   }, []);
 
+  const handleDropdownClick = (itemName: string, e: React.MouseEvent) => {
+    e.preventDefault();
+    setActiveDropdown(activeDropdown === itemName ? null : itemName);
+  };
+
+  const handleLinkClick = () => {
+    setIsMobileMenuOpen(false);
+    setActiveDropdown(null);
+  };
+
   const menuItems = [
     { name: 'Home', href: '/' },
     { 
@@ -36,11 +47,7 @@ const Navigation = () => {
     },
     { 
       name: 'Portfolio',
-      submenu: [
-        { name: 'Case Studies', href: '/portfolio/case-studies' },
-        { name: 'Website Portfolio', href: '/portfolio/websites' },
-        { name: 'Marketing Campaigns', href: '/portfolio/marketing' }
-      ]
+      href: '/portfolio'
     },
     { name: 'About', href: '/about' },
     { name: 'Contact', href: '/contact' }
@@ -65,6 +72,7 @@ const Navigation = () => {
               <div key={item.name} className="relative">
                 {item.submenu ? (
                   <button
+                    onClick={(e) => handleDropdownClick(item.name, e)}
                     onMouseEnter={() => setActiveDropdown(item.name)}
                     onMouseLeave={() => setActiveDropdown(null)}
                     className="nav-item text-gray-700 hover:text-[#d4df42] font-medium transition-colors duration-300 relative group flex items-center"
@@ -78,7 +86,10 @@ const Navigation = () => {
                 ) : (
                   <Link
                     to={item.href!}
-                    className="nav-item text-gray-700 hover:text-[#d4df42] font-medium transition-colors duration-300 relative group"
+                    onClick={handleLinkClick}
+                    className={`nav-item text-gray-700 hover:text-[#d4df42] font-medium transition-colors duration-300 relative group ${
+                      location.pathname === item.href ? 'text-[#d4df42]' : ''
+                    }`}
                   >
                     {item.name}
                     <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#d4df42] transition-all duration-300 group-hover:w-full"></span>
@@ -96,7 +107,10 @@ const Navigation = () => {
                       <Link
                         key={subItem.name}
                         to={subItem.href}
-                        className="block px-4 py-2 text-gray-700 hover:bg-[#d4df42]/10 hover:text-[#d4df42] transition-colors duration-200"
+                        onClick={handleLinkClick}
+                        className={`block px-4 py-2 text-gray-700 hover:bg-[#d4df42]/10 hover:text-[#d4df42] transition-colors duration-200 ${
+                          location.pathname === subItem.href ? 'text-[#d4df42] bg-[#d4df42]/5' : ''
+                        }`}
                       >
                         {subItem.name}
                       </Link>
@@ -141,7 +155,7 @@ const Navigation = () => {
                 ) : (
                   <Link
                     to={item.href!}
-                    onClick={() => setIsMobileMenuOpen(false)}
+                    onClick={handleLinkClick}
                     className="block py-3 text-gray-700 hover:text-[#d4df42] font-medium transition-colors duration-300"
                   >
                     {item.name}
@@ -153,7 +167,7 @@ const Navigation = () => {
                       <Link
                         key={subItem.name}
                         to={subItem.href}
-                        onClick={() => setIsMobileMenuOpen(false)}
+                        onClick={handleLinkClick}
                         className="block py-2 text-gray-600 hover:text-[#d4df42] transition-colors duration-200"
                       >
                         {subItem.name}
