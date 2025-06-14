@@ -69,10 +69,10 @@ const Navigation = () => {
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
       isScrolled ? 'bg-white/95 backdrop-blur-md shadow-lg' : 'bg-transparent'
     }`}>
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16 sm:h-20">
           {/* Logo */}
-          <Link to="/" onClick={closeAllMenus} className="font-bold text-2xl text-gray-900 hover:text-[#d4df42] transition-colors">
+          <Link to="/" onClick={closeAllMenus} className="font-bold text-xl sm:text-2xl text-gray-900 hover:text-[#d4df42] transition-colors">
             MDM Consulting
           </Link>
 
@@ -133,7 +133,8 @@ const Navigation = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 text-gray-700 hover:text-[#d4df42] transition-colors"
+            className="md:hidden p-2 text-gray-700 hover:text-[#d4df42] transition-colors rounded-md"
+            aria-label="Toggle mobile menu"
           >
             {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
@@ -141,50 +142,56 @@ const Navigation = () => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden bg-white/95 backdrop-blur-md rounded-lg mt-2 p-4 shadow-xl border border-gray-100 animate-in slide-in-from-top-2 duration-200">
-            {menuItems.map((item) => (
-              <div key={item.name} className="border-b border-gray-100 last:border-b-0">
-                {item.dropdownItems ? (
-                  <>
-                    <button
-                      onClick={() => handleDropdownToggle(item.name)}
-                      className="flex items-center justify-between w-full py-3 text-gray-700 hover:text-[#d4df42] font-medium transition-colors"
+          <div className="md:hidden absolute top-full left-0 right-0 bg-white/98 backdrop-blur-md shadow-xl border-t border-gray-100 max-h-[80vh] overflow-y-auto">
+            <div className="px-4 py-4 space-y-2">
+              {menuItems.map((item) => (
+                <div key={item.name} className="border-b border-gray-100 last:border-b-0 pb-2 last:pb-0">
+                  {item.dropdownItems ? (
+                    <div>
+                      <button
+                        onClick={() => handleDropdownToggle(item.name)}
+                        className={`flex items-center justify-between w-full py-3 px-2 text-left text-gray-700 hover:text-[#d4df42] font-medium transition-colors rounded-md hover:bg-gray-50 ${
+                          item.dropdownItems.some(subItem => location.pathname === subItem.path) ? 'text-[#d4df42] bg-[#d4df42]/5' : ''
+                        }`}
+                      >
+                        <span>{item.name}</span>
+                        <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${
+                          activeDropdown === item.name ? 'rotate-180' : ''
+                        }`} />
+                      </button>
+                      
+                      {/* Mobile Dropdown Items */}
+                      {activeDropdown === item.name && (
+                        <div className="mt-2 ml-4 space-y-1 animate-in slide-in-from-top-1 duration-200">
+                          {item.dropdownItems.map((subItem) => (
+                            <Link
+                              key={subItem.name}
+                              to={subItem.path}
+                              onClick={closeAllMenus}
+                              className={`block py-2 px-3 text-sm text-gray-600 hover:text-[#d4df42] hover:bg-[#d4df42]/5 transition-colors rounded-md ${
+                                location.pathname === subItem.path ? 'text-[#d4df42] bg-[#d4df42]/10 font-medium' : ''
+                              }`}
+                            >
+                              {subItem.name}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  ) : (
+                    <Link
+                      to={item.path!}
+                      onClick={closeAllMenus}
+                      className={`block py-3 px-2 text-gray-700 hover:text-[#d4df42] font-medium transition-colors rounded-md hover:bg-gray-50 ${
+                        location.pathname === item.path ? 'text-[#d4df42] bg-[#d4df42]/5' : ''
+                      }`}
                     >
                       {item.name}
-                      <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${
-                        activeDropdown === item.name ? 'rotate-180' : ''
-                      }`} />
-                    </button>
-                    {activeDropdown === item.name && (
-                      <div className="pb-2 animate-in slide-in-from-top-1 duration-200">
-                        {item.dropdownItems.map((subItem) => (
-                          <Link
-                            key={subItem.name}
-                            to={subItem.path}
-                            onClick={closeAllMenus}
-                            className={`block py-2 pl-4 text-gray-600 hover:text-[#d4df42] transition-colors ${
-                              location.pathname === subItem.path ? 'text-[#d4df42]' : ''
-                            }`}
-                          >
-                            {subItem.name}
-                          </Link>
-                        ))}
-                      </div>
-                    )}
-                  </>
-                ) : (
-                  <Link
-                    to={item.path!}
-                    onClick={closeAllMenus}
-                    className={`block py-3 text-gray-700 hover:text-[#d4df42] font-medium transition-colors ${
-                      location.pathname === item.path ? 'text-[#d4df42]' : ''
-                    }`}
-                  >
-                    {item.name}
-                  </Link>
-                )}
-              </div>
-            ))}
+                    </Link>
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
         )}
       </div>
