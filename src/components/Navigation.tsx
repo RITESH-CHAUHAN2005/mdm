@@ -72,12 +72,16 @@ const Navigation = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 sm:h-20">
           {/* Logo */}
-          <Link to="/" onClick={closeAllMenus} className="font-bold text-xl sm:text-2xl text-gray-900 hover:text-[#d4df42] transition-colors">
+          <Link 
+            to="/" 
+            onClick={closeAllMenus} 
+            className="font-bold text-xl sm:text-2xl text-gray-900 hover:text-[#d4df42] transition-colors z-50 relative"
+          >
             MDM Consulting
           </Link>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-1">
+          <div className="hidden lg:flex items-center space-x-1">
             {menuItems.map((item) => (
               <div
                 key={item.name}
@@ -133,42 +137,51 @@ const Navigation = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 text-gray-700 hover:text-[#d4df42] transition-colors rounded-md"
+            className="lg:hidden p-2 text-gray-700 hover:text-[#d4df42] transition-colors rounded-md z-50 relative"
             aria-label="Toggle mobile menu"
           >
             {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Mobile Menu Overlay */}
         {isMobileMenuOpen && (
-          <div className="md:hidden absolute top-full left-0 right-0 bg-white/98 backdrop-blur-md shadow-xl border-t border-gray-100 max-h-[80vh] overflow-y-auto">
-            <div className="px-4 py-4 space-y-2">
-              {menuItems.map((item) => (
-                <div key={item.name} className="border-b border-gray-100 last:border-b-0 pb-2 last:pb-0">
+          <div className="lg:hidden fixed inset-0 top-16 bg-black/50 backdrop-blur-sm z-40" onClick={closeAllMenus} />
+        )}
+
+        {/* Mobile Menu */}
+        <div className={`lg:hidden fixed top-16 left-0 right-0 bg-white/98 backdrop-blur-md shadow-xl border-t border-gray-100 z-50 transition-all duration-300 transform ${
+          isMobileMenuOpen ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0 pointer-events-none'
+        }`}>
+          <div className="max-h-[calc(100vh-4rem)] overflow-y-auto">
+            <div className="px-4 py-6 space-y-1">
+              {menuItems.map((item, index) => (
+                <div key={item.name} className={`${index !== menuItems.length - 1 ? 'border-b border-gray-100 pb-4 mb-4' : ''}`}>
                   {item.dropdownItems ? (
                     <div>
                       <button
                         onClick={() => handleDropdownToggle(item.name)}
-                        className={`flex items-center justify-between w-full py-3 px-2 text-left text-gray-700 hover:text-[#d4df42] font-medium transition-colors rounded-md hover:bg-gray-50 ${
+                        className={`flex items-center justify-between w-full py-4 px-4 text-left text-gray-700 hover:text-[#d4df42] font-medium transition-all duration-200 rounded-lg hover:bg-gray-50 text-lg ${
                           item.dropdownItems.some(subItem => location.pathname === subItem.path) ? 'text-[#d4df42] bg-[#d4df42]/5' : ''
                         }`}
                       >
                         <span>{item.name}</span>
-                        <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${
+                        <ChevronDown className={`h-5 w-5 transition-transform duration-200 ${
                           activeDropdown === item.name ? 'rotate-180' : ''
                         }`} />
                       </button>
                       
                       {/* Mobile Dropdown Items */}
-                      {activeDropdown === item.name && (
-                        <div className="mt-2 ml-4 space-y-1 animate-in slide-in-from-top-1 duration-200">
+                      <div className={`overflow-hidden transition-all duration-300 ${
+                        activeDropdown === item.name ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+                      }`}>
+                        <div className="mt-2 ml-4 space-y-1">
                           {item.dropdownItems.map((subItem) => (
                             <Link
                               key={subItem.name}
                               to={subItem.path}
                               onClick={closeAllMenus}
-                              className={`block py-2 px-3 text-sm text-gray-600 hover:text-[#d4df42] hover:bg-[#d4df42]/5 transition-colors rounded-md ${
+                              className={`block py-3 px-4 text-gray-600 hover:text-[#d4df42] hover:bg-[#d4df42]/5 transition-all duration-200 rounded-lg ${
                                 location.pathname === subItem.path ? 'text-[#d4df42] bg-[#d4df42]/10 font-medium' : ''
                               }`}
                             >
@@ -176,13 +189,13 @@ const Navigation = () => {
                             </Link>
                           ))}
                         </div>
-                      )}
+                      </div>
                     </div>
                   ) : (
                     <Link
                       to={item.path!}
                       onClick={closeAllMenus}
-                      className={`block py-3 px-2 text-gray-700 hover:text-[#d4df42] font-medium transition-colors rounded-md hover:bg-gray-50 ${
+                      className={`block py-4 px-4 text-gray-700 hover:text-[#d4df42] font-medium transition-all duration-200 rounded-lg hover:bg-gray-50 text-lg ${
                         location.pathname === item.path ? 'text-[#d4df42] bg-[#d4df42]/5' : ''
                       }`}
                     >
@@ -193,7 +206,7 @@ const Navigation = () => {
               ))}
             </div>
           </div>
-        )}
+        </div>
       </div>
     </nav>
   );
