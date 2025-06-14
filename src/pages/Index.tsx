@@ -13,6 +13,7 @@ import Portfolio from '../components/Portfolio';
 import Team from '../components/Team';
 import Contact from '../components/Contact';
 import Footer from '../components/Footer';
+import WhatsAppButton from '../components/WhatsAppButton';
 
 gsap.registerPlugin(ScrollTrigger, TextPlugin);
 
@@ -65,6 +66,7 @@ const Index = () => {
       <Team />
       <Contact />
       <Footer />
+      <WhatsAppButton />
     </div>
   );
 };

@@ -32,12 +32,14 @@
 
   * {
     @apply border-border;
+    box-sizing: border-box;
   }
 
   body {
     @apply bg-background text-foreground;
     font-family: 'Montserrat', sans-serif;
     scroll-behavior: smooth;
+    overflow-x: hidden;
   }
 
   html {
@@ -69,7 +71,7 @@
   
   /* Custom scrollbar */
   ::-webkit-scrollbar {
-    width: 8px;
+    width: 6px;
   }
   
   ::-webkit-scrollbar-track {
@@ -83,6 +85,56 @@
   
   ::-webkit-scrollbar-thumb:hover {
     background: #555;
+  }
+
+  /* Mobile responsive utilities */
+  @media (max-width: 768px) {
+    .container {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+    
+    h1 {
+      font-size: 2rem;
+      line-height: 2.5rem;
+    }
+    
+    h2 {
+      font-size: 1.75rem;
+      line-height: 2.25rem;
+    }
+    
+    h3 {
+      font-size: 1.5rem;
+      line-height: 2rem;
+    }
+  }
+
+  /* WhatsApp floating button */
+  .whatsapp-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 20px;
+    right: 20px;
+    z-index: 100;
+    border-radius: 50%;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+  }
+  
+  .whatsapp-float:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  @media (max-width: 480px) {
+    .whatsapp-float {
+      width: 50px;
+      height: 50px;
+      bottom: 15px;
+      right: 15px;
+    }
   }
 }
 
