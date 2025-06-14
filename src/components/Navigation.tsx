@@ -46,7 +46,11 @@ const Navigation = () => {
     setActiveDropdown(null);
   };
 
-  const handleDropdownToggle = (itemName: string) => {
+  const handleDropdownToggle = (itemName: string, event?: React.MouseEvent) => {
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
     setActiveDropdown(activeDropdown === itemName ? null : itemName);
   };
 
@@ -144,67 +148,60 @@ const Navigation = () => {
           </button>
         </div>
 
-        {/* Mobile Menu Overlay */}
-        {isMobileMenuOpen && (
-          <div className="lg:hidden fixed inset-0 top-16 bg-black/50 backdrop-blur-sm z-40" onClick={closeAllMenus} />
-        )}
-
         {/* Mobile Menu */}
-        <div className={`lg:hidden fixed top-16 left-0 right-0 bg-white/98 backdrop-blur-md shadow-xl border-t border-gray-100 z-50 transition-all duration-300 transform ${
-          isMobileMenuOpen ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0 pointer-events-none'
+        <div className={`lg:hidden absolute top-full left-0 right-0 bg-white/98 backdrop-blur-md shadow-xl border-t border-gray-100 z-40 transition-all duration-300 ${
+          isMobileMenuOpen ? 'block' : 'hidden'
         }`}>
-          <div className="max-h-[calc(100vh-4rem)] overflow-y-auto">
-            <div className="px-4 py-6 space-y-1">
-              {menuItems.map((item, index) => (
-                <div key={item.name} className={`${index !== menuItems.length - 1 ? 'border-b border-gray-100 pb-4 mb-4' : ''}`}>
-                  {item.dropdownItems ? (
-                    <div>
-                      <button
-                        onClick={() => handleDropdownToggle(item.name)}
-                        className={`flex items-center justify-between w-full py-4 px-4 text-left text-gray-700 hover:text-[#d4df42] font-medium transition-all duration-200 rounded-lg hover:bg-gray-50 text-lg ${
-                          item.dropdownItems.some(subItem => location.pathname === subItem.path) ? 'text-[#d4df42] bg-[#d4df42]/5' : ''
-                        }`}
-                      >
-                        <span>{item.name}</span>
-                        <ChevronDown className={`h-5 w-5 transition-transform duration-200 ${
-                          activeDropdown === item.name ? 'rotate-180' : ''
-                        }`} />
-                      </button>
-                      
-                      {/* Mobile Dropdown Items */}
-                      <div className={`overflow-hidden transition-all duration-300 ${
-                        activeDropdown === item.name ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-                      }`}>
-                        <div className="mt-2 ml-4 space-y-1">
-                          {item.dropdownItems.map((subItem) => (
-                            <Link
-                              key={subItem.name}
-                              to={subItem.path}
-                              onClick={closeAllMenus}
-                              className={`block py-3 px-4 text-gray-600 hover:text-[#d4df42] hover:bg-[#d4df42]/5 transition-all duration-200 rounded-lg ${
-                                location.pathname === subItem.path ? 'text-[#d4df42] bg-[#d4df42]/10 font-medium' : ''
-                              }`}
-                            >
-                              {subItem.name}
-                            </Link>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  ) : (
-                    <Link
-                      to={item.path!}
-                      onClick={closeAllMenus}
-                      className={`block py-4 px-4 text-gray-700 hover:text-[#d4df42] font-medium transition-all duration-200 rounded-lg hover:bg-gray-50 text-lg ${
-                        location.pathname === item.path ? 'text-[#d4df42] bg-[#d4df42]/5' : ''
+          <div className="px-4 py-6 space-y-2">
+            {menuItems.map((item, index) => (
+              <div key={item.name} className={`${index !== menuItems.length - 1 ? 'border-b border-gray-100 pb-4 mb-4' : ''}`}>
+                {item.dropdownItems ? (
+                  <div>
+                    <button
+                      onClick={(e) => handleDropdownToggle(item.name, e)}
+                      className={`flex items-center justify-between w-full py-3 px-4 text-left text-gray-700 hover:text-[#d4df42] font-medium transition-all duration-200 rounded-lg hover:bg-gray-50 text-lg ${
+                        item.dropdownItems.some(subItem => location.pathname === subItem.path) ? 'text-[#d4df42] bg-[#d4df42]/5' : ''
                       }`}
                     >
-                      {item.name}
-                    </Link>
-                  )}
-                </div>
-              ))}
-            </div>
+                      <span>{item.name}</span>
+                      <ChevronDown className={`h-5 w-5 transition-transform duration-200 ${
+                        activeDropdown === item.name ? 'rotate-180' : ''
+                      }`} />
+                    </button>
+                    
+                    {/* Mobile Dropdown Items */}
+                    <div className={`overflow-hidden transition-all duration-300 ${
+                      activeDropdown === item.name ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+                    }`}>
+                      <div className="mt-2 ml-4 space-y-1">
+                        {item.dropdownItems.map((subItem) => (
+                          <Link
+                            key={subItem.name}
+                            to={subItem.path}
+                            onClick={closeAllMenus}
+                            className={`block py-3 px-4 text-gray-600 hover:text-[#d4df42] hover:bg-[#d4df42]/5 transition-all duration-200 rounded-lg ${
+                              location.pathname === subItem.path ? 'text-[#d4df42] bg-[#d4df42]/10 font-medium' : ''
+                            }`}
+                          >
+                            {subItem.name}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <Link
+                    to={item.path!}
+                    onClick={closeAllMenus}
+                    className={`block py-3 px-4 text-gray-700 hover:text-[#d4df42] font-medium transition-all duration-200 rounded-lg hover:bg-gray-50 text-lg ${
+                      location.pathname === item.path ? 'text-[#d4df42] bg-[#d4df42]/5' : ''
+                    }`}
+                  >
+                    {item.name}
+                  </Link>
+                )}
+              </div>
+            ))}
           </div>
         </div>
       </div>
