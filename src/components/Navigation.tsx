@@ -13,7 +13,7 @@ const Navigation = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -70,7 +70,7 @@ const Navigation = () => {
   ];
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 gpu-accelerated ${
       isScrolled ? 'bg-white/95 backdrop-blur-md shadow-lg' : 'bg-transparent'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -79,7 +79,7 @@ const Navigation = () => {
           <Link 
             to="/" 
             onClick={closeAllMenus} 
-            className="font-bold text-xl sm:text-2xl text-gray-900 hover:text-[#d4df42] transition-colors z-50 relative"
+            className="font-bold text-xl sm:text-2xl text-gray-900 hover:text-brand transition-colors z-50 relative"
           >
             MDM Consulting
           </Link>
@@ -95,8 +95,8 @@ const Navigation = () => {
                   <div>
                     <button
                       onClick={() => handleDropdownToggle(item.name)}
-                      className={`flex items-center px-4 py-2 text-gray-700 hover:text-[#d4df42] font-medium transition-colors duration-200 rounded-md hover:bg-gray-50 ${
-                        item.dropdownItems.some(subItem => location.pathname === subItem.path) ? 'text-[#d4df42]' : ''
+                      className={`flex items-center px-4 py-2 text-gray-700 hover:text-brand font-medium transition-colors duration-200 rounded-md hover:bg-gray-50 ${
+                        item.dropdownItems.some(subItem => location.pathname === subItem.path) ? 'text-brand' : ''
                       }`}
                     >
                       {item.name}
@@ -113,8 +113,8 @@ const Navigation = () => {
                             key={subItem.name}
                             to={subItem.path}
                             onClick={closeAllMenus}
-                            className={`block px-4 py-3 text-gray-700 hover:bg-[#d4df42]/10 hover:text-[#d4df42] transition-colors duration-200 ${
-                              location.pathname === subItem.path ? 'text-[#d4df42] bg-[#d4df42]/5' : ''
+                            className={`block px-4 py-3 text-gray-700 hover:bg-brand/10 hover:text-brand transition-colors duration-200 ${
+                              location.pathname === subItem.path ? 'text-brand bg-brand/5' : ''
                             }`}
                           >
                             {subItem.name}
@@ -127,8 +127,8 @@ const Navigation = () => {
                   <Link
                     to={item.path!}
                     onClick={closeAllMenus}
-                    className={`px-4 py-2 text-gray-700 hover:text-[#d4df42] font-medium transition-colors duration-200 rounded-md hover:bg-gray-50 ${
-                      location.pathname === item.path ? 'text-[#d4df42]' : ''
+                    className={`px-4 py-2 text-gray-700 hover:text-brand font-medium transition-colors duration-200 rounded-md hover:bg-gray-50 ${
+                      location.pathname === item.path ? 'text-brand' : ''
                     }`}
                   >
                     {item.name}
@@ -141,7 +141,7 @@ const Navigation = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden p-2 text-gray-700 hover:text-[#d4df42] transition-colors rounded-md z-50 relative"
+            className="lg:hidden p-2 text-gray-700 hover:text-brand transition-colors rounded-md z-50 relative"
             aria-label="Toggle mobile menu"
           >
             {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -159,8 +159,8 @@ const Navigation = () => {
                   <div>
                     <button
                       onClick={(e) => handleDropdownToggle(item.name, e)}
-                      className={`flex items-center justify-between w-full py-3 px-4 text-left text-gray-700 hover:text-[#d4df42] font-medium transition-all duration-200 rounded-lg hover:bg-gray-50 text-lg ${
-                        item.dropdownItems.some(subItem => location.pathname === subItem.path) ? 'text-[#d4df42] bg-[#d4df42]/5' : ''
+                      className={`flex items-center justify-between w-full py-3 px-4 text-left text-gray-700 hover:text-brand font-medium transition-all duration-200 rounded-lg hover:bg-gray-50 text-lg ${
+                        item.dropdownItems.some(subItem => location.pathname === subItem.path) ? 'text-brand bg-brand/5' : ''
                       }`}
                     >
                       <span>{item.name}</span>
@@ -179,8 +179,8 @@ const Navigation = () => {
                             key={subItem.name}
                             to={subItem.path}
                             onClick={closeAllMenus}
-                            className={`block py-3 px-4 text-gray-600 hover:text-[#d4df42] hover:bg-[#d4df42]/5 transition-all duration-200 rounded-lg ${
-                              location.pathname === subItem.path ? 'text-[#d4df42] bg-[#d4df42]/10 font-medium' : ''
+                            className={`block py-3 px-4 text-gray-600 hover:text-brand hover:bg-brand/5 transition-all duration-200 rounded-lg ${
+                              location.pathname === subItem.path ? 'text-brand bg-brand/10 font-medium' : ''
                             }`}
                           >
                             {subItem.name}
@@ -193,8 +193,8 @@ const Navigation = () => {
                   <Link
                     to={item.path!}
                     onClick={closeAllMenus}
-                    className={`block py-3 px-4 text-gray-700 hover:text-[#d4df42] font-medium transition-all duration-200 rounded-lg hover:bg-gray-50 text-lg ${
-                      location.pathname === item.path ? 'text-[#d4df42] bg-[#d4df42]/5' : ''
+                    className={`block py-3 px-4 text-gray-700 hover:text-brand font-medium transition-all duration-200 rounded-lg hover:bg-gray-50 text-lg ${
+                      location.pathname === item.path ? 'text-brand bg-brand/5' : ''
                     }`}
                   >
                     {item.name}

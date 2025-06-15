@@ -74,6 +74,21 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				brand: {
+					DEFAULT: 'rgb(162, 156, 62)',
+					secondary: 'rgb(132, 124, 52)',
+					50: 'rgb(252, 251, 245)',
+					100: 'rgb(247, 246, 231)',
+					200: 'rgb(237, 235, 204)',
+					300: 'rgb(226, 223, 177)',
+					400: 'rgb(194, 188, 109)',
+					500: 'rgb(162, 156, 62)',
+					600: 'rgb(132, 124, 52)',
+					700: 'rgb(102, 96, 42)',
+					800: 'rgb(72, 68, 32)',
+					900: 'rgb(42, 40, 22)',
+					950: 'rgb(22, 21, 12)'
 				}
 			},
 			borderRadius: {

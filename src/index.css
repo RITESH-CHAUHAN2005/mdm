@@ -28,6 +28,8 @@
     --input: 214.3 31.8% 91.4%;
     --ring: 222.2 84% 4.9%;
     --radius: 0.5rem;
+    --brand-primary: 162 156 62;
+    --brand-secondary: 132 124 52;
   }
 
   * {
@@ -40,6 +42,8 @@
     font-family: 'Montserrat', sans-serif;
     scroll-behavior: smooth;
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   html {
@@ -47,10 +51,11 @@
   }
 }
 
-/* Custom animations */
+/* Custom animations - Optimized for performance */
 @layer utilities {
   .parallax-slow {
     transform: translateZ(0);
+    will-change: transform;
   }
   
   .network-line {
@@ -79,15 +84,15 @@
   }
   
   ::-webkit-scrollbar-thumb {
-    background: #888;
+    background: rgb(var(--brand-secondary));
     border-radius: 4px;
   }
   
   ::-webkit-scrollbar-thumb:hover {
-    background: #555;
+    background: rgb(var(--brand-primary));
   }
 
-  /* Mobile responsive utilities */
+  /* Mobile responsive utilities - Enhanced */
   @media (max-width: 768px) {
     .container {
       padding-left: 1rem;
@@ -110,7 +115,24 @@
     }
   }
 
-  /* WhatsApp floating button */
+  @media (max-width: 480px) {
+    .container {
+      padding-left: 0.75rem;
+      padding-right: 0.75rem;
+    }
+    
+    h1 {
+      font-size: 1.75rem;
+      line-height: 2.25rem;
+    }
+    
+    h2 {
+      font-size: 1.5rem;
+      line-height: 2rem;
+    }
+  }
+
+  /* WhatsApp floating button - Enhanced responsiveness */
   .whatsapp-float {
     position: fixed;
     width: 60px;
@@ -121,11 +143,21 @@
     border-radius: 50%;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
+    will-change: transform;
   }
   
   .whatsapp-float:hover {
     transform: scale(1.1);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  @media (max-width: 768px) {
+    .whatsapp-float {
+      width: 55px;
+      height: 55px;
+      bottom: 18px;
+      right: 18px;
+    }
   }
 
   @media (max-width: 480px) {
@@ -136,35 +168,77 @@
       right: 15px;
     }
   }
+
+  /* Brand color utilities */
+  .text-brand {
+    color: rgb(var(--brand-primary));
+  }
+  
+  .bg-brand {
+    background-color: rgb(var(--brand-primary));
+  }
+  
+  .border-brand {
+    border-color: rgb(var(--brand-primary));
+  }
+  
+  .text-brand-secondary {
+    color: rgb(var(--brand-secondary));
+  }
+  
+  .bg-brand-secondary {
+    background-color: rgb(var(--brand-secondary));
+  }
+  
+  .hover\:text-brand:hover {
+    color: rgb(var(--brand-primary));
+  }
+  
+  .hover\:bg-brand:hover {
+    background-color: rgb(var(--brand-primary));
+  }
+
+  /* Performance optimizations */
+  .gpu-accelerated {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
 }
 
-/* GSAP animations will override these when needed */
+/* GSAP animations will override these when needed - Optimized */
 .fade-up {
   opacity: 1;
   transform: translateY(0);
+  will-change: transform, opacity;
 }
 
 .service-card {
   opacity: 1;
   transform: translateY(0) scale(1);
+  will-change: transform, opacity;
 }
 
 .portfolio-item {
   opacity: 1;
   transform: translateY(0);
+  will-change: transform, opacity;
 }
 
 .team-member {
   opacity: 1;
   transform: translateY(0) rotateY(0deg);
+  will-change: transform, opacity;
 }
 
 .contact-content {
   opacity: 1;
   transform: translateY(0);
+  will-change: transform, opacity;
 }
 
 .form-element {
   opacity: 1;
   transform: translateX(0);
+  will-change: transform, opacity;
 }
