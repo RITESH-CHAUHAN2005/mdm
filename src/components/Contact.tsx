@@ -192,9 +192,9 @@ I would like to discuss this project further.`;
             <div className="form-element">
               <button
                 type="submit"
-                className="w-full bg-[rgb(162,156,62)] text-white font-bold py-4 px-8 rounded-lg hover:bg-[rgb(132,124,52)] transition-all duration-300 transform hover:scale-105 hover:shadow-xl"
+                className="w-full bg-gradient-to-r from-[rgb(162,156,62)] to-[rgb(132,124,52)] text-white font-bold py-4 px-8 rounded-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
               >
-                Send Message via WhatsApp
+                Submit
               </button>
             </div>
           </form>

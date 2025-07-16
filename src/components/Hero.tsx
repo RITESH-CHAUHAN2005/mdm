@@ -173,55 +173,29 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* Right Content - Enhanced Creative Network Visualization */}
+        {/* Right Content - Digital Innovation Image */}
         <div className="flex justify-center lg:justify-end">
-          <div className="network-container relative w-80 h-80">
-            <svg className="w-full h-full" viewBox="0 0 320 320">
-              {/* Enhanced Network Lines - More interconnected */}
-              <g className="network-lines">
-                <line className="network-line stroke-gray-300" x1="160" y1="80" x2="240" y2="160" strokeWidth="2" strokeDasharray="200" />
-                <line className="network-line stroke-gray-300" x1="160" y1="80" x2="80" y2="160" strokeWidth="2" strokeDasharray="200" />
-                <line className="network-line stroke-gray-300" x1="240" y1="160" x2="160" y2="240" strokeWidth="2" strokeDasharray="200" />
-                <line className="network-line stroke-gray-300" x1="80" y1="160" x2="160" y2="240" strokeWidth="2" strokeDasharray="200" />
-                <line className="network-line stroke-[rgb(162,156,62)]/30" x1="160" y1="80" x2="200" y2="120" strokeWidth="1" strokeDasharray="200" />
-                <line className="network-line stroke-[rgb(162,156,62)]/30" x1="160" y1="80" x2="120" y2="120" strokeWidth="1" strokeDasharray="200" />
-                <line className="network-line stroke-[rgb(162,156,62)]/30" x1="240" y1="160" x2="200" y2="200" strokeWidth="1" strokeDasharray="200" />
-                <line className="network-line stroke-[rgb(162,156,62)]/30" x1="80" y1="160" x2="120" y2="200" strokeWidth="1" strokeDasharray="200" />
-                
-                {/* Additional Creative Connections */}
-                <line className="network-line stroke-blue-300" x1="200" y1="120" x2="200" y2="200" strokeWidth="1" strokeDasharray="150" />
-                <line className="network-line stroke-purple-300" x1="120" y1="120" x2="120" y2="200" strokeWidth="1" strokeDasharray="150" />
-                <line className="network-line stroke-cyan-300" x1="120" y1="120" x2="200" y2="200" strokeWidth="1" strokeDasharray="150" />
-                <line className="network-line stroke-pink-300" x1="200" y1="120" x2="120" y2="200" strokeWidth="1" strokeDasharray="150" />
-              </g>
-              
-              {/* Main Network Dots - More nodes */}
-              <circle className="network-dot main-node fill-[rgb(162,156,62)]" cx="160" cy="80" r="12" />
-              <circle className="network-dot main-node fill-blue-500" cx="240" cy="160" r="10" />
-              <circle className="network-dot main-node fill-[rgb(162,156,62)]" cx="160" cy="240" r="12" />
-              <circle className="network-dot main-node fill-purple-500" cx="80" cy="160" r="10" />
-              
-              {/* Secondary Nodes - More creative positioning */}
-              <circle className="network-dot fill-yellow-500" cx="200" cy="120" r="6" />
-              <circle className="network-dot fill-pink-500" cx="120" cy="120" r="6" />
-              <circle className="network-dot fill-indigo-500" cx="200" cy="200" r="6" />
-              <circle className="network-dot fill-cyan-500" cx="120" cy="200" r="6" />
-              
-              {/* Additional Creative Nodes */}
-              <circle className="network-dot fill-green-400" cx="280" cy="120" r="4" />
-              <circle className="network-dot fill-orange-400" cx="40" cy="120" r="4" />
-              <circle className="network-dot fill-red-400" cx="280" cy="200" r="4" />
-              <circle className="network-dot fill-violet-400" cx="40" cy="200" r="4" />
-              <circle className="network-dot fill-teal-400" cx="160" cy="40" r="5" />
-              <circle className="network-dot fill-rose-400" cx="160" cy="280" r="5" />
-              
-              {/* Multiple Moving Balls with Different Paths */}
-              <circle className="moving-ball-1 fill-[rgb(162,156,62)]" cx="160" cy="80" r="3" opacity="0.8" />
-              <circle className="moving-ball-2 fill-blue-400" cx="80" cy="160" r="3" opacity="0.8" />
-              <circle className="moving-ball-3 fill-purple-400" cx="200" cy="120" r="3" opacity="0.8" />
-              <circle className="moving-ball-1 fill-cyan-400" cx="160" cy="80" r="2" opacity="0.6" />
-              <circle className="moving-ball-2 fill-pink-400" cx="80" cy="160" r="2" opacity="0.6" />
-            </svg>
+          <div className="relative w-80 h-80 rounded-2xl overflow-hidden shadow-2xl">
+            <img 
+              src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400&h=400&fit=crop&crop=entropy&cs=tinysrgb" 
+              alt="Digital Innovation - Code on MacBook"
+              className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+            <div className="absolute bottom-6 left-6 right-6">
+              <div className="text-white">
+                <h4 className="font-bold text-lg mb-2">Digital Excellence</h4>
+                <p className="text-sm opacity-90">Where code meets creativity</p>
+              </div>
+            </div>
+            
+            {/* Floating animation badges */}
+            <div className="absolute top-4 right-4 bg-[rgb(162,156,62)]/90 text-white px-3 py-1 rounded-full text-sm font-medium animate-pulse">
+              Innovation
+            </div>
+            <div className="absolute top-16 left-4 bg-blue-500/90 text-white px-3 py-1 rounded-full text-sm font-medium animate-pulse" style={{animationDelay: '1s'}}>
+              Technology
+            </div>
           </div>
         </div>
       </div>

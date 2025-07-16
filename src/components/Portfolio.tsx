@@ -70,52 +70,84 @@ const Portfolio = () => {
 
   const portfolioItems = [
     {
-      title: "TechCorp Solutions",
-      subtitle: "Enterprise Digital Platform",
-      color: "from-blue-600 to-cyan-600",
-      bgColor: "bg-gradient-to-br from-blue-600 to-cyan-600",
+      title: "TechFlow Solutions",
+      subtitle: "Enterprise SaaS Platform",
+      color: "from-[rgb(162,156,62)] to-[rgb(132,124,52)]",
+      bgColor: "bg-gradient-to-br from-[rgb(162,156,62)] to-[rgb(132,124,52)]",
       image: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=400&h=300&fit=crop&crop=entropy&cs=tinysrgb",
-      description: "Complete digital transformation for enterprise solutions with modern UI/UX design and cloud infrastructure."
+      description: "Complete digital transformation for enterprise solutions with modern UI/UX design and cloud infrastructure.",
+      tech: ["React", "Node.js", "AWS", "MongoDB"],
+      category: "Technology"
     },
     {
-      title: "FinanceFlow",
-      subtitle: "Modern Banking App",
-      color: "from-emerald-600 to-teal-600", 
-      bgColor: "bg-gradient-to-br from-emerald-600 to-teal-600",
+      title: "FinanceFlow Pro",
+      subtitle: "Modern Banking Application",
+      color: "from-[rgb(162,156,62)] to-[rgb(132,124,52)]", 
+      bgColor: "bg-gradient-to-br from-[rgb(162,156,62)] to-[rgb(132,124,52)]",
       image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=400&h=300&fit=crop&crop=entropy&cs=tinysrgb",
-      description: "Revolutionary mobile banking application with seamless user experience and advanced security features."
+      description: "Revolutionary mobile banking application with seamless user experience and advanced security features.",
+      tech: ["React Native", "Python", "PostgreSQL", "Docker"],
+      category: "Fintech"
     },
     {
-      title: "EcoMarket",
+      title: "EcoMarket Hub",
       subtitle: "Sustainable E-commerce Platform", 
-      color: "from-green-600 to-lime-600",
-      bgColor: "bg-gradient-to-br from-green-600 to-lime-600",
+      color: "from-[rgb(162,156,62)] to-[rgb(132,124,52)]",
+      bgColor: "bg-gradient-to-br from-[rgb(162,156,62)] to-[rgb(132,124,52)]",
       image: "https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=400&h=300&fit=crop&crop=entropy&cs=tinysrgb",
-      description: "Full-stack e-commerce solution promoting sustainable products with integrated marketing campaigns."
+      description: "Full-stack e-commerce solution promoting sustainable products with integrated marketing campaigns.",
+      tech: ["Shopify", "React", "Node.js", "Stripe"],
+      category: "E-commerce"
     },
     {
-      title: "HealthTech Pro",
+      title: "HealthTech Central",
       subtitle: "Medical Management System",
-      color: "from-purple-600 to-violet-600",
-      bgColor: "bg-gradient-to-br from-purple-600 to-violet-600", 
+      color: "from-[rgb(162,156,62)] to-[rgb(132,124,52)]",
+      bgColor: "bg-gradient-to-br from-[rgb(162,156,62)] to-[rgb(132,124,52)]", 
       image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=400&h=300&fit=crop&crop=entropy&cs=tinysrgb",
-      description: "Comprehensive healthcare management platform with patient portals and analytics dashboard."
+      description: "Comprehensive healthcare management platform with patient portals and analytics dashboard.",
+      tech: ["Vue.js", "Django", "MySQL", "Redis"],
+      category: "Healthcare"
     },
     {
-      title: "FoodieHub",
-      subtitle: "Restaurant Discovery App",
-      color: "from-orange-600 to-red-600",
-      bgColor: "bg-gradient-to-br from-orange-600 to-red-600",
+      title: "FoodieConnect",
+      subtitle: "Restaurant Discovery Platform",
+      color: "from-[rgb(162,156,62)] to-[rgb(132,124,52)]",
+      bgColor: "bg-gradient-to-br from-[rgb(162,156,62)] to-[rgb(132,124,52)]",
       image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&h=300&fit=crop&crop=entropy&cs=tinysrgb", 
-      description: "Social dining platform connecting food lovers with personalized recommendations and booking system."
+      description: "Social dining platform connecting food lovers with personalized recommendations and booking system.",
+      tech: ["Flutter", "Firebase", "Google Maps API", "Stripe"],
+      category: "Food & Beverage"
     },
     {
-      title: "EduLearn",
-      subtitle: "Online Learning Platform",
-      color: "from-indigo-600 to-blue-600",
-      bgColor: "bg-gradient-to-br from-indigo-600 to-blue-600",
+      title: "EduMaster Pro",
+      subtitle: "Online Learning Ecosystem",
+      color: "from-[rgb(162,156,62)] to-[rgb(132,124,52)]",
+      bgColor: "bg-gradient-to-br from-[rgb(162,156,62)] to-[rgb(132,124,52)]",
       image: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=400&h=300&fit=crop&crop=entropy&cs=tinysrgb",
-      description: "Interactive e-learning platform with video courses, assessments, and progress tracking features."
+      description: "Interactive e-learning platform with video courses, assessments, and progress tracking features.",
+      tech: ["Angular", "Laravel", "MySQL", "FFmpeg"],
+      category: "Education"
+    },
+    {
+      title: "PropTech Vision",
+      subtitle: "Real Estate Management Portal",
+      color: "from-[rgb(162,156,62)] to-[rgb(132,124,52)]",
+      bgColor: "bg-gradient-to-br from-[rgb(162,156,62)] to-[rgb(132,124,52)]",
+      image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=400&h=300&fit=crop&crop=entropy&cs=tinysrgb",
+      description: "Modern property management system with virtual tours, lease management, and tenant portals.",
+      tech: ["React", "Express.js", "MongoDB", "WebRTC"],
+      category: "Real Estate"
+    },
+    {
+      title: "FitLife Tracker",
+      subtitle: "Wellness & Fitness App",
+      color: "from-[rgb(162,156,62)] to-[rgb(132,124,52)]",
+      bgColor: "bg-gradient-to-br from-[rgb(162,156,62)] to-[rgb(132,124,52)]",
+      image: "https://images.unsplash.com/photo-1571019613914-85fb9963b9bf?w=400&h=300&fit=crop&crop=entropy&cs=tinysrgb",
+      description: "Comprehensive fitness tracking app with workout plans, nutrition guides, and progress analytics.",
+      tech: ["React Native", "Python", "TensorFlow", "AWS"],
+      category: "Health & Wellness"
     }
   ];
 
@@ -158,11 +190,25 @@ const Portfolio = () => {
 
                 {/* Portfolio Content */}
                 <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">{item.title}</h3>
+                  <div className="flex items-center justify-between mb-2">
+                    <h3 className="text-xl font-bold text-gray-900">{item.title}</h3>
+                    <span className="text-xs bg-[rgb(162,156,62)]/10 text-[rgb(162,156,62)] px-2 py-1 rounded-full font-medium">
+                      {item.category}
+                    </span>
+                  </div>
                   <p className="text-gray-600 mb-4 text-sm leading-relaxed">{item.description}</p>
                   
+                  {/* Tech Stack */}
+                  <div className="flex flex-wrap gap-1 mb-4">
+                    {item.tech.map((tech, techIndex) => (
+                      <span key={techIndex} className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded-md">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                  
                   <div className="flex items-center justify-between">
-                    <span className="text-sm text-[rgb(162,156,62)] font-medium">View Details</span>
+                    <span className="text-sm text-[rgb(162,156,62)] font-medium">View Case Study</span>
                     <div className="w-8 h-8 rounded-full bg-[rgb(162,156,62)]/10 flex items-center justify-center group-hover:bg-[rgb(162,156,62)]/20 transition-colors duration-300">
                       <svg className="w-4 h-4 text-[rgb(162,156,62)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

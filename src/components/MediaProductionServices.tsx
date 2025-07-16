@@ -97,42 +97,32 @@ const MediaProductionServices = () => {
             </div>
           </div>
 
-          {/* Right Animation */}
+          {/* Right Content - Media Production Visual */}
           <div className="flex justify-center">
-            <div className="relative w-80 h-80">
-              <svg className="w-full h-full" viewBox="0 0 320 320">
-                {/* Film Reel Background */}
-                <circle className="film-reel stroke-gray-300" cx="160" cy="160" r="100" fill="none" strokeWidth="2" strokeDasharray="20,10" />
-                <circle className="film-reel stroke-[#d4df42]" cx="160" cy="160" r="80" fill="none" strokeWidth="3" strokeDasharray="15,5" />
-                
-                {/* Camera Elements */}
-                <rect className="camera-icon fill-gray-700" x="120" y="120" width="80" height="60" rx="10" />
-                <circle className="fill-gray-900" cx="160" cy="150" r="20" />
-                <circle className="fill-[#d4df42]" cx="160" cy="150" r="12" />
-                
-                {/* Lens Flare Effect */}
-                <circle className="fill-[#d4df42]" cx="160" cy="150" r="8" opacity="0.8" />
-                <circle className="fill-white" cx="160" cy="150" r="4" opacity="0.6" />
-                
-                {/* Media Icons Around */}
-                <circle className="fill-red-500" cx="80" cy="100" r="8" />
-                <text x="80" y="105" textAnchor="middle" className="fill-white font-bold text-xs">📷</text>
-                
-                <circle className="fill-blue-500" cx="240" cy="100" r="8" />
-                <text x="240" y="105" textAnchor="middle" className="fill-white font-bold text-xs">🎬</text>
-                
-                <circle className="fill-purple-500" cx="80" cy="220" r="8" />
-                <text x="80" y="225" textAnchor="middle" className="fill-white font-bold text-xs">✨</text>
-                
-                <circle className="fill-green-500" cx="240" cy="220" r="8" />
-                <text x="240" y="225" textAnchor="middle" className="fill-white font-bold text-xs">🎨</text>
-                
-                {/* Connection Lines */}
-                <line x1="80" y1="100" x2="140" y2="140" stroke="#ef4444" strokeWidth="2" opacity="0.6" />
-                <line x1="240" y1="100" x2="180" y2="140" stroke="#3b82f6" strokeWidth="2" opacity="0.6" />
-                <line x1="80" y1="220" x2="140" y2="180" stroke="#8b5cf6" strokeWidth="2" opacity="0.6" />
-                <line x1="240" y1="220" x2="180" y2="180" stroke="#10b981" strokeWidth="2" opacity="0.6" />
-              </svg>
+            <div className="relative w-80 h-80 rounded-2xl overflow-hidden shadow-2xl">
+              <img 
+                src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=400&h=400&fit=crop&crop=entropy&cs=tinysrgb" 
+                alt="Media Production - Creative Content"
+                className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+              <div className="absolute bottom-6 left-6 right-6">
+                <div className="text-white">
+                  <h4 className="font-bold text-lg mb-2">Visual Storytelling</h4>
+                  <p className="text-sm opacity-90">Captivating content creation</p>
+                </div>
+              </div>
+              
+              {/* Production badges */}
+              <div className="absolute top-4 left-4 bg-[rgb(162,156,62)]/90 text-white px-3 py-1 rounded-full text-sm font-medium">
+                4K Quality
+              </div>
+              <div className="absolute top-4 right-4 bg-red-500/90 text-white px-3 py-1 rounded-full text-sm font-medium">
+                Creative
+              </div>
+              <div className="absolute top-16 left-1/2 transform -translate-x-1/2 bg-purple-500/90 text-white px-3 py-1 rounded-full text-sm font-medium">
+                Professional
+              </div>
             </div>
           </div>
         </div>

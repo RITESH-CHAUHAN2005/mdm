@@ -104,31 +104,32 @@ const TechnologyServices = () => {
             </div>
           </div>
 
-          {/* Right Animation */}
+          {/* Right Content - Technology Image */}
           <div className="tech-animation flex justify-center">
-            <div className="relative w-80 h-80">
-              <svg className="w-full h-full" viewBox="0 0 320 320">
-                {/* Tech Circuit Background */}
-                <circle cx="160" cy="160" r="120" fill="none" stroke="#d4df42" strokeWidth="2" strokeDasharray="10,5" opacity="0.3" />
-                <circle cx="160" cy="160" r="80" fill="none" stroke="#3b82f6" strokeWidth="2" strokeDasharray="5,5" opacity="0.3" />
-                <circle cx="160" cy="160" r="40" fill="none" stroke="#8b5cf6" strokeWidth="2" opacity="0.3" />
-                
-                {/* Tech Nodes */}
-                <circle className="fill-[#d4df42]" cx="160" cy="40" r="8" />
-                <circle className="fill-blue-500" cx="280" cy="160" r="8" />
-                <circle className="fill-purple-500" cx="160" cy="280" r="8" />
-                <circle className="fill-green-500" cx="40" cy="160" r="8" />
-                
-                {/* Center Hub */}
-                <circle className="fill-gray-900" cx="160" cy="160" r="20" />
-                <text x="160" y="168" textAnchor="middle" className="fill-white font-bold text-sm">TECH</text>
-                
-                {/* Connecting Lines */}
-                <line x1="160" y1="40" x2="160" y2="140" stroke="#d4df42" strokeWidth="2" opacity="0.6" />
-                <line x1="280" y1="160" x2="180" y2="160" stroke="#3b82f6" strokeWidth="2" opacity="0.6" />
-                <line x1="160" y1="280" x2="160" y2="180" stroke="#8b5cf6" strokeWidth="2" opacity="0.6" />
-                <line x1="40" y1="160" x2="140" y2="160" stroke="#10b981" strokeWidth="2" opacity="0.6" />
-              </svg>
+            <div className="relative w-80 h-80 rounded-2xl overflow-hidden shadow-2xl">
+              <img 
+                src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&h=400&fit=crop&crop=entropy&cs=tinysrgb" 
+                alt="Technology Solutions - Circuit Board"
+                className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+              <div className="absolute bottom-6 left-6 right-6">
+                <div className="text-white">
+                  <h4 className="font-bold text-lg mb-2">Advanced Technology</h4>
+                  <p className="text-sm opacity-90">Building the future today</p>
+                </div>
+              </div>
+              
+              {/* Tech stack badges */}
+              <div className="absolute top-4 left-4 bg-[rgb(162,156,62)]/90 text-white px-3 py-1 rounded-full text-sm font-medium">
+                React
+              </div>
+              <div className="absolute top-4 right-4 bg-blue-500/90 text-white px-3 py-1 rounded-full text-sm font-medium">
+                Node.js
+              </div>
+              <div className="absolute top-16 left-1/2 transform -translate-x-1/2 bg-purple-500/90 text-white px-3 py-1 rounded-full text-sm font-medium">
+                Cloud
+              </div>
             </div>
           </div>
         </div>
@@ -145,7 +146,7 @@ const TechnologyServices = () => {
           
           <div className="flex flex-wrap justify-center gap-4">
             {techStack.map((tech, index) => (
-              <div key={index} className={`tech-icon ${tech.color} px-4 py-2 rounded-full text-white font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105`}>
+              <div key={index} className="tech-icon bg-gradient-to-r from-[rgb(162,156,62)] to-[rgb(132,124,52)] px-4 py-2 rounded-full text-white font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
                 {tech.name}
               </div>
             ))}

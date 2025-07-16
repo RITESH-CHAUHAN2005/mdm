@@ -93,36 +93,29 @@ const MarketingServices = () => {
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           
-          {/* Left Animation */}
+          {/* Left Content - Marketing Visual */}
           <div className="marketing-animation flex justify-center lg:order-1">
-            <div className="relative w-80 h-80">
-              <svg className="w-full h-full" viewBox="0 0 320 320">
-                {/* Marketing Waves */}
-                <circle className="marketing-wave stroke-[#d4df42]" cx="160" cy="160" r="40" fill="none" strokeWidth="3" opacity="0.8" />
-                <circle className="marketing-wave stroke-blue-500" cx="160" cy="160" r="60" fill="none" strokeWidth="2" opacity="0.6" />
-                <circle className="marketing-wave stroke-purple-500" cx="160" cy="160" r="80" fill="none" strokeWidth="2" opacity="0.4" />
-                <circle className="marketing-wave stroke-pink-500" cx="160" cy="160" r="100" fill="none" strokeWidth="1" opacity="0.3" />
-                
-                {/* Network Nodes */}
-                <circle className="fill-[#d4df42]" cx="160" cy="80" r="6" />
-                <circle className="fill-blue-500" cx="220" cy="140" r="5" />
-                <circle className="fill-purple-500" cx="220" cy="180" r="5" />
-                <circle className="fill-pink-500" cx="160" cy="240" r="6" />
-                <circle className="fill-green-500" cx="100" cy="180" r="5" />
-                <circle className="fill-orange-500" cx="100" cy="140" r="5" />
-                
-                {/* Center Hub */}
-                <circle className="fill-gradient-to-r from-[#d4df42] to-[#a8b832]" cx="160" cy="160" r="25" />
-                <text x="160" y="168" textAnchor="middle" className="fill-white font-bold text-xs">GROWTH</text>
-                
-                {/* Connection Lines */}
-                <line x1="160" y1="80" x2="160" y2="135" stroke="#d4df42" strokeWidth="2" opacity="0.7" />
-                <line x1="220" y1="140" x2="185" y2="150" stroke="#3b82f6" strokeWidth="2" opacity="0.7" />
-                <line x1="220" y1="180" x2="185" y2="170" stroke="#8b5cf6" strokeWidth="2" opacity="0.7" />
-                <line x1="160" y1="240" x2="160" y2="185" stroke="#ec4899" strokeWidth="2" opacity="0.7" />
-                <line x1="100" y1="180" x2="135" y2="170" stroke="#10b981" strokeWidth="2" opacity="0.7" />
-                <line x1="100" y1="140" x2="135" y2="150" stroke="#f97316" strokeWidth="2" opacity="0.7" />
-              </svg>
+            <div className="relative w-80 h-80 rounded-2xl overflow-hidden shadow-2xl">
+              <img 
+                src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=400&fit=crop&crop=entropy&cs=tinysrgb" 
+                alt="Marketing Strategy - Business Growth"
+                className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+              <div className="absolute bottom-6 left-6 right-6">
+                <div className="text-white">
+                  <h4 className="font-bold text-lg mb-2">Growth Marketing</h4>
+                  <p className="text-sm opacity-90">Data-driven strategies</p>
+                </div>
+              </div>
+              
+              {/* Marketing badges */}
+              <div className="absolute top-4 left-4 bg-[rgb(162,156,62)]/90 text-white px-3 py-1 rounded-full text-sm font-medium animate-pulse">
+                ROI Focused
+              </div>
+              <div className="absolute top-4 right-4 bg-green-500/90 text-white px-3 py-1 rounded-full text-sm font-medium animate-pulse" style={{animationDelay: '1s'}}>
+                Performance
+              </div>
             </div>
           </div>
 
