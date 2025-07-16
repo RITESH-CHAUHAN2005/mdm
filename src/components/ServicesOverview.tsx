@@ -44,31 +44,32 @@ const ServicesOverview = () => {
       title: "Technology",
       description: "Custom web development, e-commerce solutions, CRM integration, and automation tools.",
       icon: (
-        <svg className="w-16 h-16 text-[#d4df42]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+        <svg className="w-16 h-16 text-[rgb(162,156,62)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
         </svg>
       ),
-      features: ["Custom Web Design", "E-Commerce Solutions", "CRM Integration", "Automation Tools"]
+      features: ["Custom Web Development", "E-Commerce Solutions", "CRM Integration", "Cloud Infrastructure"]
     },
     {
       title: "Marketing",
       description: "Performance marketing, social media management, SEO, and comprehensive digital strategies.",
       icon: (
-        <svg className="w-16 h-16 text-[#d4df42]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9" />
+        <svg className="w-16 h-16 text-[rgb(162,156,62)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z" />
         </svg>
       ),
-      features: ["Social Media Management", "Performance Marketing", "SEO & Lead Generation", "Email Marketing"]
+      features: ["Social Media Management", "Performance Marketing", "SEO & Lead Generation", "Analytics & Insights"]
     },
     {
       title: "Media Production",
       description: "Visual content creation, video production, photography, and creative ad visuals.",
       icon: (
-        <svg className="w-16 h-16 text-[#d4df42]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+        <svg className="w-16 h-16 text-[rgb(162,156,62)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 4V2a1 1 0 011-1h8a1 1 0 011 1v2m4 0H4a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zM9 9l2 2 4-4" />
         </svg>
       ),
-      features: ["Product Photoshoots", "Video Production", "Motion Graphics", "Creative Ad Visuals"]
+      features: ["Product Photography", "Video Production", "Motion Graphics", "Brand Visuals"]
     }
   ];
 
@@ -90,7 +91,7 @@ const ServicesOverview = () => {
         <div className="services-grid grid grid-cols-1 md:grid-cols-3 gap-8">
           {services.map((service, index) => (
             <div key={service.title} className="service-card group">
-              <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:border-[#d4df42]/30">
+              <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:border-[rgb(162,156,62)]/30">
                 
                 {/* Service Icon */}
                 <div className="service-icon mb-6 flex justify-center">
@@ -99,7 +100,7 @@ const ServicesOverview = () => {
 
                 {/* Service Content */}
                 <div className="text-center">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-[#d4df42] transition-colors duration-300">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-[rgb(162,156,62)] transition-colors duration-300">
                     {service.title}
                   </h3>
                   <p className="text-gray-600 mb-6">
@@ -110,7 +111,7 @@ const ServicesOverview = () => {
                   <ul className="space-y-2 text-sm text-gray-500">
                     {service.features.map((feature, featureIndex) => (
                       <li key={featureIndex} className="flex items-center justify-center space-x-2">
-                        <div className="w-1.5 h-1.5 bg-[#d4df42] rounded-full"></div>
+                        <div className="w-1.5 h-1.5 bg-[rgb(162,156,62)] rounded-full"></div>
                         <span>{feature}</span>
                       </li>
                     ))}

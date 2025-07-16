@@ -70,22 +70,52 @@ const Portfolio = () => {
 
   const portfolioItems = [
     {
-      title: "BEAR",
-      subtitle: "Vitamin Design Portfolio",
-      color: "from-red-500 to-pink-500",
-      bgColor: "bg-red-500"
+      title: "TechCorp Solutions",
+      subtitle: "Enterprise Digital Platform",
+      color: "from-blue-600 to-cyan-600",
+      bgColor: "bg-gradient-to-br from-blue-600 to-cyan-600",
+      image: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=400&h=300&fit=crop&crop=entropy&cs=tinysrgb",
+      description: "Complete digital transformation for enterprise solutions with modern UI/UX design and cloud infrastructure."
     },
     {
-      title: "FRAN",
-      subtitle: "Financial Technology Platform",
-      color: "from-blue-500 to-purple-600",
-      bgColor: "bg-blue-600"
+      title: "FinanceFlow",
+      subtitle: "Modern Banking App",
+      color: "from-emerald-600 to-teal-600", 
+      bgColor: "bg-gradient-to-br from-emerald-600 to-teal-600",
+      image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=400&h=300&fit=crop&crop=entropy&cs=tinysrgb",
+      description: "Revolutionary mobile banking application with seamless user experience and advanced security features."
     },
     {
-      title: "Mental Bang",
-      subtitle: "Creative Design Studio",
-      color: "from-purple-500 to-pink-500",
-      bgColor: "bg-purple-500"
+      title: "EcoMarket",
+      subtitle: "Sustainable E-commerce Platform", 
+      color: "from-green-600 to-lime-600",
+      bgColor: "bg-gradient-to-br from-green-600 to-lime-600",
+      image: "https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=400&h=300&fit=crop&crop=entropy&cs=tinysrgb",
+      description: "Full-stack e-commerce solution promoting sustainable products with integrated marketing campaigns."
+    },
+    {
+      title: "HealthTech Pro",
+      subtitle: "Medical Management System",
+      color: "from-purple-600 to-violet-600",
+      bgColor: "bg-gradient-to-br from-purple-600 to-violet-600", 
+      image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=400&h=300&fit=crop&crop=entropy&cs=tinysrgb",
+      description: "Comprehensive healthcare management platform with patient portals and analytics dashboard."
+    },
+    {
+      title: "FoodieHub",
+      subtitle: "Restaurant Discovery App",
+      color: "from-orange-600 to-red-600",
+      bgColor: "bg-gradient-to-br from-orange-600 to-red-600",
+      image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&h=300&fit=crop&crop=entropy&cs=tinysrgb", 
+      description: "Social dining platform connecting food lovers with personalized recommendations and booking system."
+    },
+    {
+      title: "EduLearn",
+      subtitle: "Online Learning Platform",
+      color: "from-indigo-600 to-blue-600",
+      bgColor: "bg-gradient-to-br from-indigo-600 to-blue-600",
+      image: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=400&h=300&fit=crop&crop=entropy&cs=tinysrgb",
+      description: "Interactive e-learning platform with video courses, assessments, and progress tracking features."
     }
   ];
 
@@ -96,25 +126,31 @@ const Portfolio = () => {
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="fade-up text-4xl lg:text-5xl font-bold text-gray-900 mb-8">
-            240+ Projects Delivered
+            Our Portfolio
           </h2>
           <p className="fade-up text-lg text-gray-600 max-w-2xl mx-auto">
-            Our work represents innovation and excellence across various industries
+            Showcasing successful projects across various industries with measurable results
           </p>
         </div>
 
         {/* Portfolio Grid */}
-        <div className="portfolio-grid grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="portfolio-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {portfolioItems.map((item, index) => (
             <div key={item.title} className="portfolio-item group cursor-pointer relative">
-              <div className="relative overflow-hidden rounded-2xl bg-white shadow-lg hover:shadow-2xl transition-all duration-500 mb-8">
+              <div className="relative overflow-hidden rounded-2xl bg-white shadow-lg hover:shadow-2xl transition-all duration-500">
                 
                 {/* Portfolio Image */}
-                <div className={`portfolio-image h-64 ${item.bgColor} relative overflow-hidden`}>
-                  <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent"></div>
+                <div className="portfolio-image h-64 relative overflow-hidden">
+                  <img 
+                    src={item.image} 
+                    alt={item.title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div className={`absolute inset-0 ${item.bgColor} opacity-80 mix-blend-multiply`}></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                   <div className="absolute bottom-4 left-4 right-4">
-                    <div className="bg-white/20 backdrop-blur-sm rounded-lg p-4 text-white">
-                      <h4 className="font-bold text-lg">{item.title}</h4>
+                    <div className="text-white">
+                      <h4 className="font-bold text-lg mb-1">{item.title}</h4>
                       <p className="text-sm opacity-90">{item.subtitle}</p>
                     </div>
                   </div>
@@ -123,54 +159,17 @@ const Portfolio = () => {
                 {/* Portfolio Content */}
                 <div className="p-6">
                   <h3 className="text-xl font-bold text-gray-900 mb-2">{item.title}</h3>
-                  <p className="text-gray-600 mb-4">{item.subtitle}</p>
+                  <p className="text-gray-600 mb-4 text-sm leading-relaxed">{item.description}</p>
                   
                   <div className="flex items-center justify-between">
-                    <span className="text-sm text-gray-500">View Project</span>
-                    <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center group-hover:bg-gray-200 transition-colors duration-300">
-                      <svg className="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <span className="text-sm text-[rgb(162,156,62)] font-medium">View Details</span>
+                    <div className="w-8 h-8 rounded-full bg-[rgb(162,156,62)]/10 flex items-center justify-center group-hover:bg-[rgb(162,156,62)]/20 transition-colors duration-300">
+                      <svg className="w-4 h-4 text-[rgb(162,156,62)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                       </svg>
                     </div>
                   </div>
                 </div>
-              </div>
-
-              {/* Animated Theme Under Card */}
-              <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-32 h-16">
-                {index === 0 && (
-                  // Red theme for BEAR
-                  <svg className="w-full h-full" viewBox="0 0 128 64">
-                    <circle className="red-particle fill-red-400" cx="20" cy="40" r="4" opacity="0.6" />
-                    <circle className="red-particle fill-pink-400" cx="40" cy="30" r="3" opacity="0.7" />
-                    <circle className="red-particle fill-red-500" cx="60" cy="45" r="5" opacity="0.5" />
-                    <circle className="red-particle fill-pink-500" cx="80" cy="35" r="3" opacity="0.6" />
-                    <circle className="red-particle fill-red-300" cx="100" cy="40" r="4" opacity="0.8" />
-                  </svg>
-                )}
-                
-                {index === 1 && (
-                  // Blue theme for FRAN
-                  <svg className="w-full h-full" viewBox="0 0 128 64">
-                    <ellipse className="blue-wave fill-blue-300" cx="64" cy="32" rx="20" ry="8" opacity="0.4" />
-                    <ellipse className="blue-wave fill-blue-400" cx="64" cy="32" rx="30" ry="6" opacity="0.3" />
-                    <ellipse className="blue-wave fill-blue-500" cx="64" cy="32" rx="40" ry="4" opacity="0.2" />
-                    <circle className="fill-blue-600" cx="64" cy="32" r="6" />
-                  </svg>
-                )}
-                
-                {index === 2 && (
-                  // Purple theme for Mental Bang
-                  <svg className="w-full h-full" viewBox="0 0 128 64">
-                    <g className="purple-spiral" style={{ transformOrigin: '64px 32px' }}>
-                      <path className="stroke-purple-400" d="M64,32 Q74,22 84,32 Q74,42 64,32 Q54,22 44,32 Q54,42 64,32" fill="none" strokeWidth="2" opacity="0.6" />
-                    </g>
-                    <circle className="purple-dot fill-purple-500" cx="50" cy="32" r="3" />
-                    <circle className="purple-dot fill-pink-500" cx="78" cy="32" r="3" />
-                    <circle className="purple-dot fill-purple-400" cx="64" cy="20" r="2" />
-                    <circle className="purple-dot fill-pink-400" cx="64" cy="44" r="2" />
-                  </svg>
-                )}
               </div>
             </div>
           ))}

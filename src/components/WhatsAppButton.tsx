@@ -2,8 +2,8 @@
 import { MessageCircle } from 'lucide-react';
 
 const WhatsAppButton = () => {
-  const phoneNumber = '+917982824113';
-  const message = 'Hello! I would like to know more about your services.';
+  const phoneNumber = '+919818303762';
+  const message = 'Hello! I would like to know more about your services and discuss my project requirements.';
   
   const handleWhatsAppClick = () => {
     const encodedMessage = encodeURIComponent(message);
@@ -14,7 +14,7 @@ const WhatsAppButton = () => {
   return (
     <button
       onClick={handleWhatsAppClick}
-      className="whatsapp-float bg-green-500 hover:bg-green-600 text-white flex items-center justify-center transition-all duration-300"
+      className="whatsapp-float bg-[rgb(162,156,62)] hover:bg-[rgb(132,124,52)] text-white flex items-center justify-center transition-all duration-300 shadow-lg hover:shadow-xl"
       aria-label="Contact us on WhatsApp"
       title="Chat with us on WhatsApp"
     >

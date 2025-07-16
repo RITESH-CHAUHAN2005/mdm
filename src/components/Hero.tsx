@@ -113,14 +113,14 @@ const Hero = () => {
           <h1 className="hero-title text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
             WHERE PURPOSE<br />
             MEETS<br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#d4df42] to-[#a8b832]">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[rgb(162,156,62)] to-[rgb(132,124,52)]">
               PERFORMANCE
             </span>
           </h1>
           
           <div className="hero-subtitle mb-8">
             <p className="text-lg text-gray-600 mb-6">
-              At <span className="font-bold text-[#d4df42]">MDM CONSULTING</span>, we don't just market; we move with mission. 
+              At <span className="font-bold text-[rgb(162,156,62)]">MDM CONSULTING</span>, we don't just market; we move with mission. 
               Born out of a passion to help brands stand for something more, we combine strategy, creativity, 
               and digital excellence to build marketing ecosystems that deliver results — not just impressions.
             </p>
@@ -134,29 +134,42 @@ const Hero = () => {
           {/* Mission Keywords with Icons */}
           <div className="hero-description flex flex-wrap gap-8 mb-8">
             <div className="flex items-center space-x-3">
-              <div className="mission-icon w-12 h-12 bg-gradient-to-r from-[#d4df42] to-[#a8b832] rounded-full flex items-center justify-center">
+              <div className="mission-icon w-12 h-12 bg-gradient-to-r from-[rgb(162,156,62)] to-[rgb(132,124,52)] rounded-full flex items-center justify-center">
                 <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
                 </svg>
               </div>
-              <span className="text-gray-700 font-bold text-lg">MISSION</span>
+              <span className="text-gray-700 font-bold text-lg">STRATEGY</span>
             </div>
             <div className="flex items-center space-x-3">
               <div className="mission-icon w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center">
                 <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
                 </svg>
               </div>
-              <span className="text-gray-700 font-bold text-lg">DRIVEN</span>
+              <span className="text-gray-700 font-bold text-lg">GROWTH</span>
             </div>
             <div className="flex items-center space-x-3">
               <div className="mission-icon w-12 h-12 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-full flex items-center justify-center">
                 <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
-              <span className="text-gray-700 font-bold text-lg">MARKETING</span>
+              <span className="text-gray-700 font-bold text-lg">RESULTS</span>
             </div>
+          </div>
+
+          {/* CTA Button */}
+          <div className="hero-description">
+            <button
+              onClick={() => {
+                const message = encodeURIComponent("Hello! I'm interested in starting a project with MDM Consulting. Can we discuss my requirements?");
+                window.open(`https://wa.me/919818303762?text=${message}`, '_blank');
+              }}
+              className="bg-gradient-to-r from-[rgb(162,156,62)] to-[rgb(132,124,52)] text-white px-8 py-4 rounded-lg font-bold text-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+            >
+              Start Your Project
+            </button>
           </div>
         </div>
 
@@ -170,10 +183,10 @@ const Hero = () => {
                 <line className="network-line stroke-gray-300" x1="160" y1="80" x2="80" y2="160" strokeWidth="2" strokeDasharray="200" />
                 <line className="network-line stroke-gray-300" x1="240" y1="160" x2="160" y2="240" strokeWidth="2" strokeDasharray="200" />
                 <line className="network-line stroke-gray-300" x1="80" y1="160" x2="160" y2="240" strokeWidth="2" strokeDasharray="200" />
-                <line className="network-line stroke-[#d4df42]/30" x1="160" y1="80" x2="200" y2="120" strokeWidth="1" strokeDasharray="200" />
-                <line className="network-line stroke-[#d4df42]/30" x1="160" y1="80" x2="120" y2="120" strokeWidth="1" strokeDasharray="200" />
-                <line className="network-line stroke-[#d4df42]/30" x1="240" y1="160" x2="200" y2="200" strokeWidth="1" strokeDasharray="200" />
-                <line className="network-line stroke-[#d4df42]/30" x1="80" y1="160" x2="120" y2="200" strokeWidth="1" strokeDasharray="200" />
+                <line className="network-line stroke-[rgb(162,156,62)]/30" x1="160" y1="80" x2="200" y2="120" strokeWidth="1" strokeDasharray="200" />
+                <line className="network-line stroke-[rgb(162,156,62)]/30" x1="160" y1="80" x2="120" y2="120" strokeWidth="1" strokeDasharray="200" />
+                <line className="network-line stroke-[rgb(162,156,62)]/30" x1="240" y1="160" x2="200" y2="200" strokeWidth="1" strokeDasharray="200" />
+                <line className="network-line stroke-[rgb(162,156,62)]/30" x1="80" y1="160" x2="120" y2="200" strokeWidth="1" strokeDasharray="200" />
                 
                 {/* Additional Creative Connections */}
                 <line className="network-line stroke-blue-300" x1="200" y1="120" x2="200" y2="200" strokeWidth="1" strokeDasharray="150" />
@@ -183,9 +196,9 @@ const Hero = () => {
               </g>
               
               {/* Main Network Dots - More nodes */}
-              <circle className="network-dot main-node fill-[#d4df42]" cx="160" cy="80" r="12" />
+              <circle className="network-dot main-node fill-[rgb(162,156,62)]" cx="160" cy="80" r="12" />
               <circle className="network-dot main-node fill-blue-500" cx="240" cy="160" r="10" />
-              <circle className="network-dot main-node fill-[#d4df42]" cx="160" cy="240" r="12" />
+              <circle className="network-dot main-node fill-[rgb(162,156,62)]" cx="160" cy="240" r="12" />
               <circle className="network-dot main-node fill-purple-500" cx="80" cy="160" r="10" />
               
               {/* Secondary Nodes - More creative positioning */}
@@ -203,7 +216,7 @@ const Hero = () => {
               <circle className="network-dot fill-rose-400" cx="160" cy="280" r="5" />
               
               {/* Multiple Moving Balls with Different Paths */}
-              <circle className="moving-ball-1 fill-[#d4df42]" cx="160" cy="80" r="3" opacity="0.8" />
+              <circle className="moving-ball-1 fill-[rgb(162,156,62)]" cx="160" cy="80" r="3" opacity="0.8" />
               <circle className="moving-ball-2 fill-blue-400" cx="80" cy="160" r="3" opacity="0.8" />
               <circle className="moving-ball-3 fill-purple-400" cx="200" cy="120" r="3" opacity="0.8" />
               <circle className="moving-ball-1 fill-cyan-400" cx="160" cy="80" r="2" opacity="0.6" />
@@ -214,9 +227,9 @@ const Hero = () => {
       </div>
       
       {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
-        <div className="w-6 h-10 border-2 border-[#d4df42] rounded-full flex justify-center">
-          <div className="w-1 h-3 bg-[#d4df42] rounded-full mt-2 animate-bounce"></div>
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+        <div className="w-6 h-10 border-2 border-[rgb(162,156,62)] rounded-full flex justify-center">
+          <div className="w-1 h-3 bg-[rgb(162,156,62)] rounded-full mt-2 animate-bounce"></div>
         </div>
       </div>
     </div>

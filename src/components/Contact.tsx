@@ -8,6 +8,7 @@ const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    service: '',
     message: ''
   });
 
@@ -63,7 +64,7 @@ const Contact = () => {
     return () => ctx.revert();
   }, []);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
@@ -72,7 +73,17 @@ const Contact = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
+    const whatsappMessage = `Hello! Here are my project details:
+    
+Name: ${formData.name}
+Email: ${formData.email}
+Service Interested In: ${formData.service}
+Message: ${formData.message}
+
+I would like to discuss this project further.`;
+    
+    const encodedMessage = encodeURIComponent(whatsappMessage);
+    window.open(`https://wa.me/919818303762?text=${encodedMessage}`, '_blank');
   };
 
   return (
@@ -115,7 +126,7 @@ const Contact = () => {
                 name="name"
                 value={formData.name}
                 onChange={handleInputChange}
-                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#d4df42] focus:border-transparent transition-all duration-300 text-white placeholder-white/60"
+                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-[rgb(162,156,62)] focus:border-transparent transition-all duration-300 text-white placeholder-white/60"
                 placeholder="Enter your name"
                 required
               />
@@ -131,10 +142,35 @@ const Contact = () => {
                 name="email"
                 value={formData.email}
                 onChange={handleInputChange}
-                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#d4df42] focus:border-transparent transition-all duration-300 text-white placeholder-white/60"
+                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-[rgb(162,156,62)] focus:border-transparent transition-all duration-300 text-white placeholder-white/60"
                 placeholder="Enter your email"
                 required
               />
+            </div>
+
+            <div className="form-element">
+              <label htmlFor="service" className="block text-sm font-medium mb-2">
+                Service Interested In
+              </label>
+              <select
+                id="service"
+                name="service"
+                value={formData.service}
+                onChange={handleInputChange}
+                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-[rgb(162,156,62)] focus:border-transparent transition-all duration-300 text-white"
+                required
+              >
+                <option value="" className="text-gray-900">Select a service</option>
+                <option value="Web Development" className="text-gray-900">Web Development</option>
+                <option value="Mobile App Development" className="text-gray-900">Mobile App Development</option>
+                <option value="Digital Marketing" className="text-gray-900">Digital Marketing</option>
+                <option value="Social Media Management" className="text-gray-900">Social Media Management</option>
+                <option value="SEO Services" className="text-gray-900">SEO Services</option>
+                <option value="Content Creation" className="text-gray-900">Content Creation</option>
+                <option value="Brand Strategy" className="text-gray-900">Brand Strategy</option>
+                <option value="E-commerce Solutions" className="text-gray-900">E-commerce Solutions</option>
+                <option value="Other" className="text-gray-900">Other</option>
+              </select>
             </div>
 
             <div className="form-element">
@@ -147,8 +183,8 @@ const Contact = () => {
                 value={formData.message}
                 onChange={handleInputChange}
                 rows={5}
-                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#d4df42] focus:border-transparent transition-all duration-300 text-white placeholder-white/60 resize-none"
-                placeholder="Tell us about your project"
+                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-[rgb(162,156,62)] focus:border-transparent transition-all duration-300 text-white placeholder-white/60 resize-none"
+                placeholder="Tell us about your project requirements"
                 required
               />
             </div>
@@ -156,9 +192,9 @@ const Contact = () => {
             <div className="form-element">
               <button
                 type="submit"
-                className="w-full bg-[#d4df42] text-gray-900 font-bold py-4 px-8 rounded-lg hover:bg-[#a8b832] transition-all duration-300 transform hover:scale-105 hover:shadow-xl"
+                className="w-full bg-[rgb(162,156,62)] text-white font-bold py-4 px-8 rounded-lg hover:bg-[rgb(132,124,52)] transition-all duration-300 transform hover:scale-105 hover:shadow-xl"
               >
-                Start Your Project
+                Send Message via WhatsApp
               </button>
             </div>
           </form>
@@ -167,16 +203,16 @@ const Contact = () => {
         {/* Contact Info */}
         <div className="contact-content mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
           <div>
-            <h3 className="font-bold text-lg mb-2 text-[#d4df42]">Email</h3>
-            <p className="text-white/80">hello@mdmconsulting.com</p>
+            <h3 className="font-bold text-lg mb-2 text-[rgb(162,156,62)]">Email</h3>
+            <p className="text-white/80">changedigital98@gmail.com</p>
           </div>
           <div>
-            <h3 className="font-bold text-lg mb-2 text-[#d4df42]">Phone</h3>
-            <p className="text-white/80">+1 (555) 123-4567</p>
+            <h3 className="font-bold text-lg mb-2 text-[rgb(162,156,62)]">Phone</h3>
+            <p className="text-white/80">+91 9818303762</p>
           </div>
           <div>
-            <h3 className="font-bold text-lg mb-2 text-[#d4df42]">Location</h3>
-            <p className="text-white/80">San Francisco, CA</p>
+            <h3 className="font-bold text-lg mb-2 text-[rgb(162,156,62)]">Location</h3>
+            <p className="text-white/80">Delhi, India</p>
           </div>
         </div>
       </div>
